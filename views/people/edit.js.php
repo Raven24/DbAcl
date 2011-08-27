@@ -1,0 +1,1 @@
+<?= render('people/_form.html.php', null, array('person'=>$person)); ?>

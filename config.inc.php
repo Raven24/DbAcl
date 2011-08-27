@@ -32,6 +32,9 @@ include('includes/functions.inc.php');
 include('includes/auth.inc.php');
 include('lib/limonade.php');
 
+include('includes/people.php');
+include('includes/clients.php');
+
 # limonade configuration
 function configure()
 {
@@ -39,18 +42,34 @@ function configure()
     option('debug', true);
 }
 
+# execute before page rendering
+function before()
+{
+    layout('layouts/default.html.php');
+    set('header', '
+        <a href="'.url_for().'">Home</a>
+        <a href="'.url_for('people').'">Personen</a>
+        <a href="'.url_for('roles').'">Rollen</a>
+        <a href="'.url_for('zugriffe').'">Zugriff</a>
+        <a href="'.url_for('server').'">Server</a>
+        <a href="'.url_for('daemons').'">Daemons</a>
+    ');
+    set('footer', '&copy; 2011 - Alexander Philipp Lintenhofer (Backend), Florian Staudacher (Frontent)');
+}
+
 # output after page rendering
 function after($output, $route)
 {
-    $time = number_format( (float)substr(microtime(), 0, 10) - LIM_START_MICROTIME, 6);
-    $output .= "\n<!-- page rendered in $time sec., on ".date(DATE_RFC822)." -->\n";
-    $output .= "<!-- for route\n";
-    $output .= print_r($route, true);
-    $output .= "-->";
+    if( !isAjaxRequest() )
+    {
+        $time = number_format( (float)substr(microtime(), 0, 10) - LIM_START_MICROTIME, 6);
+        $output .= "\n<!-- page rendered in $time sec., on ".date("D M j G:i:s T Y")." -->\n";
+        $output .= "<!-- for route\n";
+        $output .= print_r($route, true);
+        $output .= "-->";
+    }
+    
     return $output;
 }
-
-# set the default layout file
-layout('page_template_html.php');
 
 ?>
