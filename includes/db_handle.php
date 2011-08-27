@@ -265,8 +265,10 @@ function wrapper_optimieren($tabelle) {
 class MySQL
 {
     var $lastQuery = '';
+    var $lastResult = null;
     var $currentDb = '';
     var $dbConn = null;
+    var $debug = false;
 
     /**
      * constructor
@@ -307,8 +309,8 @@ class MySQL
             return false;
         }
 
-        $res = mysql_query($_sql, $this->dbConn) or $this->dbg();
-        return $res;
+        $this->lastResult = mysql_query($_sql, $this->dbConn) or $this->dbg();
+        return $this->lastResult;
     }
 
     /**
@@ -317,19 +319,36 @@ class MySQL
     function select($_sql)
     {
         $this->lastQuery = $_sql;
-        $res = wrapper_query_in_hash($_sql, $this->dbConn) or $this->dbg();
+        $this->lastResult = wrapper_query_in_hash($_sql, $this->dbConn) or $this->dbg();
         
-        return $res;        
+        return $this->lastResult;
+    }
+
+    /**
+     * number of rows returned by the last result
+     */
+    function numRows()
+    {
+        if( $this->lastResult )
+            return wrapper_num_rows($this->lastResult);
+
+        return 0;
     }
 
     /**
      * generates some human-readable debug output in case mysql experiences
      * some sort of error
      */
-    function dbg()
+    function dbg($echo=false)
     {
-        echo "Last Query: {$this->lastQuery}<br>";
-        wrapper_error();
+        if( $this->debug || $echo )
+        {
+            echo "Last Query: {$this->lastQuery}<br>";
+            wrapper_error();
+            return;
+        }
+
+        return false;
     }
 }
 ?>
