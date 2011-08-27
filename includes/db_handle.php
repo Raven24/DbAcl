@@ -45,8 +45,14 @@ function wrapper_unescape($string) {
 	return ereg_replace("\\\\\\\\","\\",ereg_replace("\\\\'","'",ereg_replace("\\\\\"","\"",$string)));
 }
 
-function wrapper_insert_id() {
-	return mysql_insert_id();
+function wrapper_insert_id($dbConn=null) {
+    global $db_connection;
+
+    if( $dbConn != null ) {
+        $db_connection = $dbConn;
+    }
+    
+	return mysql_insert_id($db_connection);
 }
 
 // ==========================================================================================================
@@ -194,8 +200,12 @@ function wrapper_single_query($sql="") {
 	return $hash_reihe;
 }
 // ==========================================================================================================
-function wrapper_eingeben($sql="") {
+function wrapper_eingeben($sql="", $dbConn=null) {
 	global $db_connection;
+
+    if( $dbConn != null ) {
+        $db_connection = $dbConn;
+    }
 
 	if (empty($sql)) {
 		return false;
@@ -208,17 +218,22 @@ function wrapper_eingeben($sql="") {
 		return false;
 	}
 	$resultat = mysql_query($sql, $db_connection);
-	if ($resultat) {
+	/*if ($resultat) {
 		$resultat = mysql_insert_id();
 		return $resultat;
 	} else {
 		return false;
-	}
+	}*/
+	return $resultat;
 }
 // ==========================================================================================================
-function wrapper_aktualisieren($sql="") {
+function wrapper_aktualisieren($sql="", $dbConn=null) {
 	global $db_connection;
 
+    if( $dbConn != null ) {
+        $db_connection = $dbConn;
+    }
+    
 	if (empty($sql)) {
 		return false;
 	}
@@ -233,8 +248,12 @@ function wrapper_aktualisieren($sql="") {
 	return $resultat;
 }
 // ==========================================================================================================
-function wrapper_loeschen($sql="") {
+function wrapper_loeschen($sql="", $dbConn=null) {
 	global $db_connection;
+
+    if( $dbConn != null ) {
+        $db_connection = $dbConn;
+    }
 
 	if (empty($sql)) {
 		return false;
@@ -268,7 +287,7 @@ class MySQL
     var $lastResult = null;
     var $currentDb = '';
     var $dbConn = null;
-    var $debug = false;
+    var $debug = true;
 
     /**
      * constructor
@@ -284,10 +303,7 @@ class MySQL
      */
     function selectDb($_db)
     {
-        if (!mysql_select_db($_db, $this->dbConn))
-        {
-            $this->dbg();
-        }
+        mysql_select_db($_db, $this->dbConn) or $this->dbg();
         $this->currentDb = $_db;
     }
 
@@ -314,13 +330,46 @@ class MySQL
     }
 
     /**
-     * execute select statement
+     * execute a select statement
      */
     function select($_sql)
     {
         $this->lastQuery = $_sql;
         $this->lastResult = wrapper_query_in_hash($_sql, $this->dbConn) or $this->dbg();
         
+        return $this->lastResult;
+    }
+
+    /**
+     * execute an insert query
+     */
+    function insert($_sql)
+    {
+        $this->lastQuery = $_sql;
+        $this->lastResult = wrapper_eingeben($_sql, $this->dbConn) or $this->dbg();
+
+        return $this->lastResult;
+    }
+
+    /**
+     * execute an update query
+     */
+    function update($_sql)
+    {
+        $this->lastQuery = $_sql;
+        $this->lastResult = wrapper_aktualisieren($_sql, $this->dbConn) or $this->dbg();
+
+        return $this->lastResult;
+    }
+
+    /**
+     * execute a delete query
+     */
+    function delete($_sql)
+    {
+        $this->lastQuery = $_sql;
+        $this->lastResult = wrapper_loeschen($_sql, $this->dbConn) or $this->dbg();
+
         return $this->lastResult;
     }
 
@@ -336,6 +385,25 @@ class MySQL
     }
 
     /**
+     * return the id of the last inserted row
+     */
+    function insertId()
+    {
+        if( $this->lastResult )
+            return wrapper_insert_id();
+
+        return 0;
+    }
+
+    /**
+     * escape a string for save usage in queries
+     */
+    function escape($str='')
+    {
+        return mysql_real_escape_string($str, $this->dbConn);
+    }
+
+    /**
      * generates some human-readable debug output in case mysql experiences
      * some sort of error
      */
@@ -345,7 +413,7 @@ class MySQL
         {
             echo "Last Query: {$this->lastQuery}<br>";
             wrapper_error();
-            return;
+            exit;
         }
 
         return false;

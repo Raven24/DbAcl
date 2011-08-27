@@ -41,7 +41,7 @@
 <?php content_for('scripts'); ?>
 <script type="text/javascript">
 
-$('.edit_person').click(function(){
+$('.edit_person').live("click", function(){
     var dialog = $('<div id="editPerson"></div>');
     $('body').append(dialog);
 
@@ -66,18 +66,18 @@ $('.edit_person').click(function(){
     return false;
 });
 
-$('.edit_client').click(function(){
+$('.edit_client').live("click", function(){
     $.getScript(this.href);
     return false;
 });
 
 $('#createPerson').click(function() {
-    var dialog = $('<div id="createPerson"></div>');
+    var dialog = $('<div id="create_person"></div>');
     $('body').append(dialog);
 
     $.get(this.href, {}, function(response){
         dialog.html(response);
-        $('#createPerson').find('input[type=submit]').remove();
+        $('#create_person').find('input[type=submit]').remove();
     });
 
     dialog.dialog({
@@ -87,7 +87,7 @@ $('#createPerson').click(function() {
             {
                 text: 'Speichern',
                 click: function() {
-                    $('#createPerson').find('form').submit();
+                    $('#create_person').find('form').submit();
                 }
             }
         ]

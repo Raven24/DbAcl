@@ -1,5 +1,6 @@
 <?php
 
+# database credentials and table names
 $GLOBALS['cfg'] = array(
     'db'                => 'access',
     'db_host'           => 'localhost',
@@ -30,10 +31,15 @@ header('Content-Type: text/html; charset=utf-8');
 
 include('includes/functions.inc.php');
 include('includes/auth.inc.php');
+
+# limonade micro php framework - http://www.limonade-php.net
 include('lib/limonade.php');
 
+# the 'controllers' 
 include('includes/people.php');
 include('includes/clients.php');
+include('includes/roles.php');
+include('includes/people_roles.php');
 
 # limonade configuration
 function configure()

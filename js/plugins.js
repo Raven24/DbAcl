@@ -19,7 +19,7 @@ window.log = function(){
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
 
 $('body').ajaxError(function(){
-    alert('Ajax Error - the request could not be completed');
+    alert("Ajax Error - the request could not be completed\n\nEither the server responded with an error code or the response contained a (script) error.");
 });
 
 var loading = '<div style="margin-top: 3em; text-align:center;"><img src="img/loading_w.gif" alt="loading..."></div>';
