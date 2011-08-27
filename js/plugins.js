@@ -22,6 +22,8 @@ $('body').ajaxError(function(){
     alert('Ajax Error - the request could not be completed');
 });
 
+var loading = '<div style="margin-top: 3em; text-align:center;"><img src="img/loading_w.gif" alt="loading..."></div>';
+
 
 /* Author: Jake Lear*/
 //Adds connection element for Raphael (From http://raphaeljs.com/graffle.html)
