@@ -345,7 +345,7 @@ function run($env = null)
   # 1. Set handlers
   # 1.1 Set error handling
   ini_set('display_errors', 1);
-  set_error_handler('error_handler_dispatcher', E_ALL ^ E_NOTICE);
+  @set_error_handler('error_handler_dispatcher', E_ALL ^ E_NOTICE);
   
   # 1.2 Register shutdown function
   register_shutdown_function('stop_and_exit');
@@ -2533,11 +2533,11 @@ if(!function_exists('array_replace'))
    * (from {@link http://www.php.net/manual/fr/function.array-replace.php#92549 this php doc. note})
    * 
    * @see array_replace()
-   * @param string $array 
-   * @param string $array1 
+   * @param array $array
+   * @param array $array1
    * @return $array
    */
-  function array_replace( array &$array, array &$array1 )
+  function array_replace( &$array, &$array1 )
   {
     $args  = func_get_args();
     $count = func_num_args();
@@ -2577,9 +2577,6 @@ function filter_var_url($str)
   $options = array( "options" => array("regexp" => $regexp ));
   return preg_match($regexp, $str) ? $str : false;
 }
-
-
-
 
 
 #   ================================= END ==================================   #
