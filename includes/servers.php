@@ -154,8 +154,11 @@ function servers_delete()
     );
 
     $resForeign = $db->delete(
-        "DELETE FROM {$cfg['tblDienst']}
-        WHERE server_id=$id"
+        "DELETE {$cfg['tblDienst']}, {$cfg['tblZugriff']}
+        FROM {$cfg['tblDienst']}
+        LEFT OUTER JOIN {$cfg['tblZugriff']}
+        ON {$cfg['tblDienst']}.id = {$cfg['tblZugriff']}.dienst_id
+        WHERE {$cfg['tblDienst']}.server_id=$id"
     );
 
     if( $result && $resForeign )

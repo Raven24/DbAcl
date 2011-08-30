@@ -142,12 +142,17 @@ function people_delete()
         LIMIT 1"
     );
 
-    $resForeign = $db->delete(
+    $resClientForeign = $db->delete(
         "DELETE FROM {$cfg['tblClient']}
         WHERE person_id=$id"
     );
 
-    if( $result && $resForeign )
+    $resHasRolleForeign = $db->delete(
+        "DELETE FROM {$cfg['tblPersonHasRolle']}
+        WHERE person_id=$id"
+    );
+
+    if( $result && $resClientForeign && $resHasRolleForeign )
     {
         set('person', array('id'=>$id));
     

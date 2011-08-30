@@ -144,12 +144,20 @@ function daemons_delete()
         LIMIT 1"
     );
 
-    $resForeign = $db->delete(
+    $resPortsForeign = $db->delete(
         "DELETE FROM {$cfg['tblPort']}
         WHERE daemon_id=$id"
     );
 
-    if( $result && $resForeign )
+    $resServiceForeign = $db->delete(
+        "DELETE {$cfg['tblDienst']}, {$cfg['tblZugriff']}
+        FROM {$cfg['tblDienst']}
+        LEFT OUTER JOIN {$cfg['tblZugriff']}
+        ON {$cfg['tblDienst']}.id = {$cfg['tblZugriff']}.dienst_id
+        WHERE {$cfg['tblDienst']}.daemon_id=$id"
+    );
+
+    if( $result && $resPortsForeign && $resServiceForeign)
     {
         set('daemon', array('id'=>$id));
 

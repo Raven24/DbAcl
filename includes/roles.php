@@ -145,7 +145,17 @@ function roles_delete()
         LIMIT 1"
     );
 
-    if( $result )
+    $resultPersonForeign = $db->delete(
+        "DELETE FROM {$cfg['tblPersonHasRolle']}
+        WHERE rolle_id=$id"
+    );
+
+    $resultZugriffForeign = $db->delete(
+        "DELETE FROM {$cfg['tblZugriff']}
+        WHERE rolle_id=$id"
+    );
+
+    if( $result && $resultPersonForeign && $resultZugriffForeign)
     {
         set('role', array('id'=>$id));
 

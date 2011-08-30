@@ -44,6 +44,7 @@ include('includes/daemons.php');
 include('includes/ports.php');
 include('includes/servers.php');
 include('includes/daemons_servers.php');
+include('includes/access.php');
 
 # limonade configuration
 function configure()
@@ -60,7 +61,7 @@ function before()
         <a href="'.url_for().'">Home</a>
         <a href="'.url_for('people').'">Personen</a>
         <a href="'.url_for('roles').'">Rollen</a>
-        <a href="'.url_for('zugriffe').'">Zugriff</a>
+        <a href="'.url_for('access').'">Zugriff</a>
         <a href="'.url_for('servers').'">Server</a>
         <a href="'.url_for('daemons').'">Daemons</a>
     ');

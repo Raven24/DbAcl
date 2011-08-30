@@ -79,14 +79,33 @@ function daemons_servers_delete()
     $server_id = intval(params('server_id'));
     $daemon_id = intval(params('daemon_id'));
 
+    $arrService = $db->select(
+        "SELECT id
+        FROM {$cfg['tblDienst']}
+        WHERE server_id='$server_id'
+        AND daemon_id='$daemon_id'"
+    );
+
+    if( !$arrService )
+    {
+        halt(SERVER_ERROR);
+        return;
+    }
+
+    $id = $arrService[0]['id'];
+
     $result = $db->delete(
         "DELETE FROM {$cfg['tblDienst']}
-        WHERE server_id='$server_id'
-        AND daemon_id='$daemon_id'
+        WHERE id='$id'
         LIMIT 1"
     );
 
-    if( !$result )
+    $resultForeign = $db->delete(
+        "DELETE FROM {$cfg['tblZugriff']}
+        WHERE dienst_id='$id'"
+    );
+
+    if( !$result || !$resultForeign )
     {
         halt(SERVER_ERROR);
         return;
