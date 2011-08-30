@@ -22,10 +22,10 @@ function access_index()
                 {$cfg['tblServer']}.*,
                 {$cfg['tblDaemon']}.*
         FROM {$cfg['tblRole']}
-        LEFT OUTER JOIN {$cfg['tblZugriff']}
-        ON {$cfg['tblZugriff']}.rolle_id = {$cfg['tblRole']}.id
+        LEFT OUTER JOIN {$cfg['tblAccess']}
+        ON {$cfg['tblAccess']}.rolle_id = {$cfg['tblRole']}.id
         LEFT OUTER JOIN {$cfg['tblService']}
-        ON {$cfg['tblService']}.id = {$cfg['tblZugriff']}.dienst_id
+        ON {$cfg['tblService']}.id = {$cfg['tblAccess']}.dienst_id
         LEFT OUTER JOIN {$cfg['tblServer']}
         ON {$cfg['tblServer']}.id = {$cfg['tblService']}.server_id
         LEFT OUTER JOIN {$cfg['tblDaemon']}
@@ -94,7 +94,7 @@ function access_create()
     $dienst_id = intval($_POST['service_id']);
 
     $result = $db->insert(
-        "INSERT INTO {$cfg['tblZugriff']}
+        "INSERT INTO {$cfg['tblAccess']}
         (dienst_id, rolle_id) VALUES
         ('$dienst_id', '$role_id')"
     );
@@ -144,7 +144,7 @@ function access_delete()
     $dienst_id = intval(params('service_id'));
 
     $result = $db->delete(
-        "DELETE FROM {$cfg['tblZugriff']}
+        "DELETE FROM {$cfg['tblAccess']}
         WHERE rolle_id='$role_id'
         AND dienst_id='$dienst_id'
         LIMIT 1"

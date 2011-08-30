@@ -150,10 +150,10 @@ function daemons_delete()
     );
 
     $resServiceForeign = $db->delete(
-        "DELETE {$cfg['tblService']}, {$cfg['tblZugriff']}
+        "DELETE {$cfg['tblService']}, {$cfg['tblAccess']}
         FROM {$cfg['tblService']}
-        LEFT OUTER JOIN {$cfg['tblZugriff']}
-        ON {$cfg['tblService']}.id = {$cfg['tblZugriff']}.dienst_id
+        LEFT OUTER JOIN {$cfg['tblAccess']}
+        ON {$cfg['tblService']}.id = {$cfg['tblAccess']}.dienst_id
         WHERE {$cfg['tblService']}.daemon_id=$id"
     );
 

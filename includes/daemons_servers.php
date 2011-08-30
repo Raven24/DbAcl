@@ -101,7 +101,7 @@ function daemons_servers_delete()
     );
 
     $resultForeign = $db->delete(
-        "DELETE FROM {$cfg['tblZugriff']}
+        "DELETE FROM {$cfg['tblAccess']}
         WHERE dienst_id='$id'"
     );
 

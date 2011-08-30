@@ -13,7 +13,7 @@ $GLOBALS['cfg'] = array(
     'tblPort'           => 'port',
     'tblRole'           => 'rolle',
     'tblServer'         => 'server',
-    'tblZugriff'        => 'zugriff',
+    'tblAccess'         => 'zugriff',
     'tblPersonHasRolle' => 'person_has_rolle',
 );
 

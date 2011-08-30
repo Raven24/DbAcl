@@ -151,7 +151,7 @@ function roles_delete()
     );
 
     $resultZugriffForeign = $db->delete(
-        "DELETE FROM {$cfg['tblZugriff']}
+        "DELETE FROM {$cfg['tblAccess']}
         WHERE rolle_id=$id"
     );
 
