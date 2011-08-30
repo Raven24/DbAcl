@@ -9,28 +9,28 @@ function access_index()
 
     # query the database
     $arrRoleAssocs = $db->select(
-        "SELECT {$cfg['tblRolle']}.id as rolle_id,
+        "SELECT {$cfg['tblRole']}.id as rolle_id,
                 {$cfg['tblService']}.id as dienst_id,
                 {$cfg['tblServer']}.id as server_id,
                 {$cfg['tblDaemon']}.id as daemon_id,
-                {$cfg['tblRolle']}.name as rolle_name,
-                {$cfg['tblRolle']}.`desc` as rolle_desc,
+                {$cfg['tblRole']}.name as rolle_name,
+                {$cfg['tblRole']}.`desc` as rolle_desc,
                 {$cfg['tblServer']}.`desc` as server_desc,
                 {$cfg['tblService']}.`desc` as dienst_desc,
                 {$cfg['tblDaemon']}.name as daemon_name,
-                {$cfg['tblRolle']}.*,
+                {$cfg['tblRole']}.*,
                 {$cfg['tblServer']}.*,
                 {$cfg['tblDaemon']}.*
-        FROM {$cfg['tblRolle']}
+        FROM {$cfg['tblRole']}
         LEFT OUTER JOIN {$cfg['tblZugriff']}
-        ON {$cfg['tblZugriff']}.rolle_id = {$cfg['tblRolle']}.id
+        ON {$cfg['tblZugriff']}.rolle_id = {$cfg['tblRole']}.id
         LEFT OUTER JOIN {$cfg['tblService']}
         ON {$cfg['tblService']}.id = {$cfg['tblZugriff']}.dienst_id
         LEFT OUTER JOIN {$cfg['tblServer']}
         ON {$cfg['tblServer']}.id = {$cfg['tblService']}.server_id
         LEFT OUTER JOIN {$cfg['tblDaemon']}
         ON {$cfg['tblDaemon']}.id = {$cfg['tblService']}.daemon_id
-        ORDER BY {$cfg['tblRolle']}.name ASC, {$cfg['tblDaemon']}.name ASC"
+        ORDER BY {$cfg['tblRole']}.name ASC, {$cfg['tblDaemon']}.name ASC"
     );
 
     $currRole = 0;

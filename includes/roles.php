@@ -9,16 +9,16 @@ function roles_index()
 
     # query the database
     $arrRoleAssocs = $db->select(
-        "SELECT {$cfg['tblRolle']}.id as rid,
+        "SELECT {$cfg['tblRole']}.id as rid,
                 {$cfg['tblPerson']}.id as pid,
-                {$cfg['tblRolle']}.*,
+                {$cfg['tblRole']}.*,
                 {$cfg['tblPerson']}.*
-        FROM {$cfg['tblRolle']}
+        FROM {$cfg['tblRole']}
         LEFT OUTER JOIN {$cfg['tblPersonHasRolle']}
-        ON {$cfg['tblPersonHasRolle']}.rolle_id = {$cfg['tblRolle']}.id
+        ON {$cfg['tblPersonHasRolle']}.rolle_id = {$cfg['tblRole']}.id
         LEFT OUTER JOIN {$cfg['tblPerson']}
         ON {$cfg['tblPerson']}.id = {$cfg['tblPersonHasRolle']}.person_id
-        ORDER BY {$cfg['tblRolle']}.name ASC, {$cfg['tblPerson']}.nachname ASC"
+        ORDER BY {$cfg['tblRole']}.name ASC, {$cfg['tblPerson']}.nachname ASC"
     );
 
     $currRole = 0;
@@ -66,7 +66,7 @@ function roles_create()
     $desc = $db->escape($_POST['desc']);
 
     $result = $db->insert(
-        "INSERT INTO {$cfg['tblRolle']}
+        "INSERT INTO {$cfg['tblRole']}
         (name, `desc`) VALUES
         ('$name', '$desc')"
     );
@@ -88,7 +88,7 @@ function roles_edit()
 
     $arrRole = $db->select(
         "SELECT *
-        FROM {$cfg['tblRolle']}
+        FROM {$cfg['tblRole']}
         WHERE id=$id"
     );
 
@@ -118,7 +118,7 @@ function roles_update()
     $desc = $db->escape($_POST['desc']);
 
     $result = $db->update(
-        "UPDATE {$cfg['tblRolle']}
+        "UPDATE {$cfg['tblRole']}
         SET name='$name', `desc`='$desc'
         WHERE id=$id
         LIMIT 1"
@@ -140,7 +140,7 @@ function roles_delete()
     $id = intval(params('id'));
 
     $result = $db->delete(
-        "DELETE FROM {$cfg['tblRolle']}
+        "DELETE FROM {$cfg['tblRole']}
         WHERE id=$id
         LIMIT 1"
     );
