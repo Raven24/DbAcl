@@ -81,7 +81,7 @@ function wrapper_init($dbase) {
 	return true;
 }
 // ==========================================================================================================
-function wrapper_query($sql="") {
+function wrapper_select($sql="") {
 	global $db_connection;
 
 	if (empty($sql)) {
