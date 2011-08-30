@@ -41,5 +41,7 @@ $('#createServer, .edit_role, .add_daemon').click(function() {
    return false;
 });
 
+var currentNav = "servers";
+
 </script>
 <?php end_content_for(); ?>

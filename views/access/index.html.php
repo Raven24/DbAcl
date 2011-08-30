@@ -29,5 +29,7 @@ $('.add_service').click(function() {
    return false;
 });
 
+var currentNav = "access";
+
 </script>
 <?php end_content_for(); ?>

@@ -40,5 +40,7 @@ $('#createDaemon, .edit_daemon, .add_port').click(function() {
    return false;
 });
 
+var currentNav = "daemons";
+
 </script>
 <?php end_content_for(); ?>

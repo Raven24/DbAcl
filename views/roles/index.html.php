@@ -40,5 +40,7 @@ $('#createRole, .edit_role, .add_person').click(function() {
    return false;
 });
 
+var currentNav = "roles";
+
 </script>
 <?php end_content_for(); ?>

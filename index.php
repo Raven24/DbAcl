@@ -9,7 +9,8 @@ require_once('config.inc.php');
 dispatch('/', 'acl_home');
 function acl_home()
 {
-    return html('home/index.html.php');
+    //return html('home/index.html.php');
+    redirect_to('people');
 }
 
 # do the magic

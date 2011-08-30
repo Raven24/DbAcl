@@ -57,14 +57,23 @@ function configure()
 function before()
 {
     layout('layouts/default.html.php');
-    set('header', '
+    /*set('header', '
         <a href="'.url_for().'">Home</a>
         <a href="'.url_for('people').'">Personen</a>
         <a href="'.url_for('roles').'">Rollen</a>
         <a href="'.url_for('access').'">Zugriff</a>
         <a href="'.url_for('servers').'">Server</a>
         <a href="'.url_for('daemons').'">Daemons</a>
-    ');
+    ');*/
+    set('header', '
+        <img id="header_img" src="img/aclmodel.png" width="850" height="72" usemap="#head_nav">
+        <map name="head_nav">
+            <area id="daemons_nav" shape="rect" href="'.url_for('daemons').'" coords="682,7,781,28" />
+            <area id="servers_nav" shape="rect" href="'.url_for('servers').'" coords="516,7,635,28" />
+            <area id="access_nav" shape="rect" href="'.url_for('access').'" coords="391,7,478,28" />
+            <area id="roles_nav" shape="rect" href="'.url_for('roles').'" coords="239,7,340,28" />
+            <area id="people_nav" shape="rect" href="'.url_for('people').'" coords="74,7,193,28" />
+        </map>');
     set('footer', '&copy; 2011 - Alexander Philipp Lintenhofer (Backend), Florian Staudacher (Frontent)');
 }
 

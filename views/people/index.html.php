@@ -102,5 +102,7 @@ var createClient = function(element, id)
     return false;
 };
 
+var currentNav = "people";
+
 </script>
 <?php end_content_for(); ?>
