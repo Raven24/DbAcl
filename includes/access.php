@@ -10,13 +10,13 @@ function access_index()
     # query the database
     $arrRoleAssocs = $db->select(
         "SELECT {$cfg['tblRolle']}.id as rolle_id,
-                {$cfg['tblDienst']}.id as dienst_id,
+                {$cfg['tblService']}.id as dienst_id,
                 {$cfg['tblServer']}.id as server_id,
                 {$cfg['tblDaemon']}.id as daemon_id,
                 {$cfg['tblRolle']}.name as rolle_name,
                 {$cfg['tblRolle']}.`desc` as rolle_desc,
                 {$cfg['tblServer']}.`desc` as server_desc,
-                {$cfg['tblDienst']}.`desc` as dienst_desc,
+                {$cfg['tblService']}.`desc` as dienst_desc,
                 {$cfg['tblDaemon']}.name as daemon_name,
                 {$cfg['tblRolle']}.*,
                 {$cfg['tblServer']}.*,
@@ -24,12 +24,12 @@ function access_index()
         FROM {$cfg['tblRolle']}
         LEFT OUTER JOIN {$cfg['tblZugriff']}
         ON {$cfg['tblZugriff']}.rolle_id = {$cfg['tblRolle']}.id
-        LEFT OUTER JOIN {$cfg['tblDienst']}
-        ON {$cfg['tblDienst']}.id = {$cfg['tblZugriff']}.dienst_id
+        LEFT OUTER JOIN {$cfg['tblService']}
+        ON {$cfg['tblService']}.id = {$cfg['tblZugriff']}.dienst_id
         LEFT OUTER JOIN {$cfg['tblServer']}
-        ON {$cfg['tblServer']}.id = {$cfg['tblDienst']}.server_id
+        ON {$cfg['tblServer']}.id = {$cfg['tblService']}.server_id
         LEFT OUTER JOIN {$cfg['tblDaemon']}
-        ON {$cfg['tblDaemon']}.id = {$cfg['tblDienst']}.daemon_id
+        ON {$cfg['tblDaemon']}.id = {$cfg['tblService']}.daemon_id
         ORDER BY {$cfg['tblRolle']}.name ASC, {$cfg['tblDaemon']}.name ASC"
     );
 
@@ -63,15 +63,15 @@ function access_new()
     set('role', array('id'=> $role_id));
 
     $arrServices = $db->select(
-        "SELECT {$cfg['tblDienst']}.id as dienst_id,
-                {$cfg['tblDienst']}.`desc` as dienst_desc,
+        "SELECT {$cfg['tblService']}.id as dienst_id,
+                {$cfg['tblService']}.`desc` as dienst_desc,
                 {$cfg['tblDaemon']}.name as daemon_name,
                 {$cfg['tblServer']}.fqdn as fqdn
-        FROM {$cfg['tblDienst']}
+        FROM {$cfg['tblService']}
         LEFT OUTER JOIN {$cfg['tblServer']}
-        ON {$cfg['tblServer']}.id = {$cfg['tblDienst']}.server_id
+        ON {$cfg['tblServer']}.id = {$cfg['tblService']}.server_id
         LEFT OUTER JOIN {$cfg['tblDaemon']}
-        ON {$cfg['tblDaemon']}.id = {$cfg['tblDienst']}.daemon_id
+        ON {$cfg['tblDaemon']}.id = {$cfg['tblService']}.daemon_id
         ORDER BY {$cfg['tblServer']}.fqdn ASC"
     );
 
@@ -106,16 +106,16 @@ function access_create()
     }
 
     $arrService = $db->select(
-        "SELECT {$cfg['tblDienst']}.id as dienst_id,
-                {$cfg['tblDienst']}.`desc` as dienst_desc,
+        "SELECT {$cfg['tblService']}.id as dienst_id,
+                {$cfg['tblService']}.`desc` as dienst_desc,
                 {$cfg['tblDaemon']}.name as daemon_name,
                 {$cfg['tblServer']}.fqdn as fqdn
-        FROM {$cfg['tblDienst']}
+        FROM {$cfg['tblService']}
         LEFT OUTER JOIN {$cfg['tblServer']}
-        ON {$cfg['tblServer']}.id = {$cfg['tblDienst']}.server_id
+        ON {$cfg['tblServer']}.id = {$cfg['tblService']}.server_id
         LEFT OUTER JOIN {$cfg['tblDaemon']}
-        ON {$cfg['tblDaemon']}.id = {$cfg['tblDienst']}.daemon_id
-        WHERE {$cfg['tblDienst']}.id=$dienst_id"
+        ON {$cfg['tblDaemon']}.id = {$cfg['tblService']}.daemon_id
+        WHERE {$cfg['tblService']}.id=$dienst_id"
     );
 
     if( !$arrService )

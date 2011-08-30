@@ -36,7 +36,7 @@ function daemons_servers_create()
     $desc      = $db->escape($_POST['desc']);
 
     $result = $db->insert(
-        "INSERT INTO {$cfg['tblDienst']}
+        "INSERT INTO {$cfg['tblService']}
         (server_id, daemon_id, `desc`) VALUES
         ('$server_id', '$daemon_id', '$desc')"
     );
@@ -81,7 +81,7 @@ function daemons_servers_delete()
 
     $arrService = $db->select(
         "SELECT id
-        FROM {$cfg['tblDienst']}
+        FROM {$cfg['tblService']}
         WHERE server_id='$server_id'
         AND daemon_id='$daemon_id'"
     );
@@ -95,7 +95,7 @@ function daemons_servers_delete()
     $id = $arrService[0]['id'];
 
     $result = $db->delete(
-        "DELETE FROM {$cfg['tblDienst']}
+        "DELETE FROM {$cfg['tblService']}
         WHERE id='$id'
         LIMIT 1"
     );

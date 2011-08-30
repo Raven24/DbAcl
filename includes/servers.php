@@ -11,14 +11,14 @@ function servers_index()
     $arrServersDaemons = $db->select(
         "SELECT {$cfg['tblServer']}.id as sid,
                 {$cfg['tblDaemon']}.id as did,
-                {$cfg['tblDienst']}.desc as d_desc,
+                {$cfg['tblService']}.desc as d_desc,
                 {$cfg['tblServer']}.*,
                 {$cfg['tblDaemon']}.*
         FROM {$cfg['tblServer']}
-        LEFT OUTER JOIN {$cfg['tblDienst']}
-        ON {$cfg['tblServer']}.id = {$cfg['tblDienst']}.server_id
+        LEFT OUTER JOIN {$cfg['tblService']}
+        ON {$cfg['tblServer']}.id = {$cfg['tblService']}.server_id
         LEFT OUTER JOIN {$cfg['tblDaemon']}
-        ON {$cfg['tblDaemon']}.id = {$cfg['tblDienst']}.daemon_id
+        ON {$cfg['tblDaemon']}.id = {$cfg['tblService']}.daemon_id
         ORDER BY {$cfg['tblServer']}.fqdn ASC, {$cfg['tblDaemon']}.name ASC"
     );
 
@@ -154,11 +154,11 @@ function servers_delete()
     );
 
     $resForeign = $db->delete(
-        "DELETE {$cfg['tblDienst']}, {$cfg['tblZugriff']}
-        FROM {$cfg['tblDienst']}
+        "DELETE {$cfg['tblService']}, {$cfg['tblZugriff']}
+        FROM {$cfg['tblService']}
         LEFT OUTER JOIN {$cfg['tblZugriff']}
-        ON {$cfg['tblDienst']}.id = {$cfg['tblZugriff']}.dienst_id
-        WHERE {$cfg['tblDienst']}.server_id=$id"
+        ON {$cfg['tblService']}.id = {$cfg['tblZugriff']}.dienst_id
+        WHERE {$cfg['tblService']}.server_id=$id"
     );
 
     if( $result && $resForeign )
