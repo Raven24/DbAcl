@@ -17,6 +17,7 @@ $GLOBALS['cfg'] = array(
     'tblPersonHasRolle' => 'person_has_rolle',
 );
 
+# database handling
 include('includes/db_handle.php');
 
 $GLOBALS['db'] = new MySQL(
@@ -73,7 +74,8 @@ function before()
             <area id="access_nav" shape="rect" href="'.url_for('access').'" coords="391,7,478,28" />
             <area id="roles_nav" shape="rect" href="'.url_for('roles').'" coords="239,7,340,28" />
             <area id="people_nav" shape="rect" href="'.url_for('people').'" coords="74,7,193,28" />
-        </map>');
+        </map>
+    ');
     set('footer', '&copy; 2011 - Alexander Philipp Lintenhofer (Backend), Florian Staudacher (Frontent)');
 }
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 $wrapper_current_db = "";
 $db_connection = null;
@@ -281,6 +281,9 @@ function wrapper_optimieren($tabelle) {
 }
 // ==========================================================================================================
 
+/**
+ * @author Florian Staudacher
+ */
 class MySQL
 {
     var $lastQuery = '';
@@ -396,7 +399,7 @@ class MySQL
     }
 
     /**
-     * escape a string for save usage in queries
+     * escape a string for safe usage in queries
      */
     function escape($str='')
     {

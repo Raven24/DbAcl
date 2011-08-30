@@ -2,6 +2,7 @@
   Florian Staudacher
 */
 
+// let all buttons look like jquery-ui buttons
 $('.button, button').button();
 
 $('*[data-method=delete]').live("click", function(){
@@ -19,11 +20,14 @@ $('*[data-method=delete]').live("click", function(){
     return false;
 });
 
+// handle forms that want to be sent via ajax
+// the response is expected to be javascript and will be interpreted
 $('*[data-remote=true]').live("submit", function() {    
     $.post(this.action, $(this).serialize(), null, 'script');
     return false;
 });
 
+// highliting for the header imagemap
 $('#header_img').maphilight({
     fillColor: '44AAFF',
     fillOpacity: 0.15,
@@ -38,7 +42,6 @@ $('#header_img').maphilight({
 });
 
 var currentNav = currentNav || 'people';
-
 var data = $('#'+currentNav+'_nav').data('maphilight') || {};
 data.alwaysOn = true;
 $('#'+currentNav+'_nav').data('maphilight', data).trigger('alwaysOn.maphilight');

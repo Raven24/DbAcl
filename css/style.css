@@ -428,10 +428,6 @@ form .field {
 }
 
 
-
-
-
-
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
    ========================================================================== */
@@ -452,7 +448,8 @@ form .field {
 /* Hide visually and from screenreaders, but maintain layout */
 .invisible { visibility: hidden; }
 
-/* Contain floats: h5bp.com/q */ 
+/* Contain floats: h5bp.com/q */
+/* added elements that need to clear, but don't have 'clearfix' class */
 .clearfix:before,
 .clearfix:after,
 .listitem dd:before,

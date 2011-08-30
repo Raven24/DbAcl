@@ -1,7 +1,7 @@
 <?php
 
 /**
- * debug output
+ * nice debug output
  */
 function dbg($var)
 {
@@ -27,12 +27,17 @@ function isAjaxRequest()
 }
 
 /**
- * encode any string for save usage in javascript variables
+ * encode any string for safe usage in javascript variables
  */
 function encode_javascript($str)
 {
     return '"' . addcslashes($str, "\\\"\n\r\t/" . chr(8) . chr(12)) . '"';
 }
+
+/**
+ * php compatibility functions.
+ * simulate some functions that are available only in newer php versions
+ */
 
 # prevent error message in php < 4.3.2
 if(!function_exists('memory_get_usage'))

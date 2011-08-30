@@ -128,6 +128,7 @@ function people_update()
     
 }
 
+# remove a person
 dispatch_delete('/people/:id', 'people_delete');
 function people_delete()
 {

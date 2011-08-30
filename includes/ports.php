@@ -53,6 +53,7 @@ function ports_create()
    
 }
 
+# delete a port
 dispatch_delete('/ports/:id', 'ports_delete');
 function ports_delete()
 {

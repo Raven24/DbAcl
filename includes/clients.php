@@ -1,5 +1,6 @@
 <?php
 
+# show the form for a new client
 dispatch('/clients/new', 'clients_new');
 function clients_new()
 {
@@ -13,6 +14,7 @@ function clients_new()
     return html('clients/new.html.php');
 }
 
+# save a new client
 dispatch_post('/clients', 'clients_create');
 function clients_create()
 {
@@ -53,6 +55,7 @@ function clients_create()
     }
 }
 
+# show form to edit an existing client
 dispatch('/clients/:id/edit', 'clients_edit');
 function clients_edit()
 {
@@ -81,6 +84,7 @@ function clients_edit()
     halt(NOT_FOUND);
 }
 
+# update an existing client
 dispatch_put('/clients', 'clients_update');
 function clients_update()
 {
@@ -119,6 +123,7 @@ function clients_update()
         halt(SERVER_ERROR);
 }
 
+# remove a client
 dispatch_delete('/clients/:id', 'clients_delete');
 function clients_delete()
 {
