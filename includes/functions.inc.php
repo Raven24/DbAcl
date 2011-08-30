@@ -1,7 +1,7 @@
 <?php
 
 /**
- * nice debug output
+ * 'nice' debug output
  */
 function dbg($var)
 {
@@ -35,7 +35,7 @@ function encode_javascript($str)
 }
 
 /**
- * php compatibility functions.
+ * php 4 compatibility functions.
  * simulate some functions that are available only in newer php versions
  */
 

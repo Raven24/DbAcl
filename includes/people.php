@@ -25,14 +25,14 @@ function people_index()
     $arrPersonen = array();
     foreach($arrClients as $entry)
     {
-        if( $currPerson != $entry['pid'] ) {
+        if( $currPerson != $entry['pid'] )
+        {
             $currPerson = $entry['pid'];
-            $arrPersonen[$currPerson] = array();
-            $arrPersonen[$currPerson]['vorname']  = $entry['vorname'];
-            $arrPersonen[$currPerson]['nachname'] = $entry['nachname'];
+            $arrPersonen[$currPerson] = $entry;
+            $arrPersonen[$currPerson]['clients'] = array();
         }
 
-        array_push($arrPersonen[$currPerson], $entry);
+        array_push($arrPersonen[$currPerson]['clients'], $entry);
     }
 
     set('people', $arrPersonen);

@@ -7,7 +7,7 @@ $wrapper_user = $GLOBALS['cfg']['db_user'];
 $wrapper_pwd  = $GLOBALS['cfg']['db_pass'];
 
 
-// define some wrapper functions to hide the db-specific calls
+// define some wrapper functions to abstract the db-specific calls
 
 function wrapper_select_db($db) {
 	global $db_connection, $wrapper_current_db;
@@ -59,7 +59,7 @@ function wrapper_insert_id($dbConn=null) {
 // ==========================================================================================================
 // LiHo-code, converted
 
-function wrapper_error($text='Abfrage fehlgeschlagen!') {
+function wrapper_error($text='Query failed!') {
 	$nr = mysql_errno();
 	$msg = mysql_error ();
 	echo "$text - ( $nr : $msg )<br>";
@@ -72,23 +72,23 @@ function wrapper_init($dbase) {
 	$db_connection = mysql_connect($wrapper_host,$wrapper_user,$wrapper_pwd);
 	if ($db_connection) {
 		if (!mysql_select_db($dbase, $db_connection)) {
-			wrapper_error("Keine Verbindung zur Datenbank !");
+			wrapper_error("No connection to database!");
 		}
 	} else {
-		wrapper_error("Datenbank nicht gefunden !");
+		wrapper_error("Database not found!");
 	}
 	$wrapper_current_db = $dbase;
 	return true;
 }
 // ==========================================================================================================
-function wrapper_auslesen($sql="") {
+function wrapper_query($sql="") {
 	global $db_connection;
 
 	if (empty($sql)) {
 		return false;
 	}
 	if (!eregi("^select",$sql)) {
-		echo "Falsche SQL-Abfrage !";
+		echo "Invalid query!";
 		return false;
 	}
 	if (!empty($db_connection)) {
@@ -119,7 +119,7 @@ function wrapper_query_in_hash($sql="", $dbConn=null) {
 		return false;
 	}
 	if (!eregi("^select",$sql)) {
-		echo "Falsche SQL-Abfrage !";
+		echo "Invalid query!";
 		return false;
 	}
 	if (!empty($db_connection)) {
@@ -148,7 +148,7 @@ function wrapper_query_in_singlelist($sql="") {
         return false;
     }
     if (!eregi("^select",$sql)) {
-        echo "Falsche SQL-Abfrage !";
+        echo "Invalid query!";
         return false;
     }
     if (!empty($db_connection)) {
@@ -177,7 +177,7 @@ function wrapper_single_query($sql="") {
 		return false;
 	}
 	if (!eregi("^select",$sql)) {
-		echo "Falsche SQL-Abfrage !";
+		echo "Invalid query!";
 		return false;
 	}
 	if (!empty($db_connection)) {
@@ -200,7 +200,7 @@ function wrapper_single_query($sql="") {
 	return $hash_reihe;
 }
 // ==========================================================================================================
-function wrapper_eingeben($sql="", $dbConn=null) {
+function wrapper_insert($sql="", $dbConn=null) {
 	global $db_connection;
 
     if( $dbConn != null ) {
@@ -211,7 +211,7 @@ function wrapper_eingeben($sql="", $dbConn=null) {
 		return false;
 	}
 	if (!eregi("^insert",$sql)) {
-		echo "Falscher SQL-Befehl !";
+		echo "Invalid query!";
 		return false;
 	}
 	if (empty($db_connection)) {
@@ -227,7 +227,7 @@ function wrapper_eingeben($sql="", $dbConn=null) {
 	return $resultat;
 }
 // ==========================================================================================================
-function wrapper_aktualisieren($sql="", $dbConn=null) {
+function wrapper_update($sql="", $dbConn=null) {
 	global $db_connection;
 
     if( $dbConn != null ) {
@@ -238,7 +238,7 @@ function wrapper_aktualisieren($sql="", $dbConn=null) {
 		return false;
 	}
 	if (!eregi("^update",$sql)) {
-		echo "Falscher SQL-Befehl !";
+		echo "Invalid query!";
 		return false;
 	}
 	if (empty($db_connection)) {
@@ -248,7 +248,7 @@ function wrapper_aktualisieren($sql="", $dbConn=null) {
 	return $resultat;
 }
 // ==========================================================================================================
-function wrapper_loeschen($sql="", $dbConn=null) {
+function wrapper_delete($sql="", $dbConn=null) {
 	global $db_connection;
 
     if( $dbConn != null ) {
@@ -259,7 +259,7 @@ function wrapper_loeschen($sql="", $dbConn=null) {
 		return false;
 	}
 	if (!eregi("^delete",$sql)) {
-		echo "Falscher SQL-Befehl !";
+		echo "Invalid query!";
 		return false;
 	}
 	if (empty($db_connection)) {
@@ -269,7 +269,7 @@ function wrapper_loeschen($sql="", $dbConn=null) {
 	return $resultat;
 }
 // ==========================================================================================================
-function wrapper_optimieren($tabelle) {
+function wrapper_optimize($tabelle) {
 	global $db_connection;
 
 	$sql = "OPTIMIZE TABLE ".$tabelle;
@@ -282,6 +282,9 @@ function wrapper_optimieren($tabelle) {
 // ==========================================================================================================
 
 /**
+ * mysql database class
+ * provides the default database actions and some debugging methods
+ * 
  * @author Florian Staudacher
  */
 class MySQL
@@ -349,7 +352,7 @@ class MySQL
     function insert($_sql)
     {
         $this->lastQuery = $_sql;
-        $this->lastResult = wrapper_eingeben($_sql, $this->dbConn) or $this->dbg();
+        $this->lastResult = wrapper_insert($_sql, $this->dbConn) or $this->dbg();
 
         return $this->lastResult;
     }
@@ -360,7 +363,7 @@ class MySQL
     function update($_sql)
     {
         $this->lastQuery = $_sql;
-        $this->lastResult = wrapper_aktualisieren($_sql, $this->dbConn) or $this->dbg();
+        $this->lastResult = wrapper_update($_sql, $this->dbConn) or $this->dbg();
 
         return $this->lastResult;
     }
@@ -371,7 +374,7 @@ class MySQL
     function delete($_sql)
     {
         $this->lastQuery = $_sql;
-        $this->lastResult = wrapper_loeschen($_sql, $this->dbConn) or $this->dbg();
+        $this->lastResult = wrapper_delete($_sql, $this->dbConn) or $this->dbg();
 
         return $this->lastResult;
     }

@@ -12,13 +12,7 @@
     
         <strong><?= $person['nachname'] ?></strong> <?= $person['vorname'] ?></span>
     </dt>
-    
-<?php
-  unset($person['vorname']);
-  unset($person['nachname']);
-?>
-
-<?php foreach($person as $client) { ?>
+<?php foreach($person['clients'] as $client) { ?>
 
     <dd data-id="<?= $client['cid'] ?>">
         <?= render('clients/show.html.php', null, array('client'=>$client)) ?>

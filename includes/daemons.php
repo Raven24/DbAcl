@@ -38,7 +38,7 @@ function daemons_index()
     return html('daemons/index.html.php');
 }
 
-# show for for new daemon
+# show form for new daemon
 dispatch('/daemons/new', 'daemons_new');
 function daemons_new()
 {
