@@ -5,9 +5,9 @@
   <dl class="listitem person" data-id="<?= $pid ?>">
     <dt>
         <div class="controls">
-            [<a href="#" onclick="createClient(this, <?= $pid ?>); return false;">Neuer Client</a>]
-            [<a href="<?= url_for('people', $pid, 'edit') ?>" class="edit_person">edit</a>]
-            [<a href="<?= url_for('people', $pid) ?>" data-method="delete">delete</a>]
+            <a href="#" onclick="createClient(this, <?= $pid ?>); return false;"><img src="img/add.png" alt="Neuer Client" title="Neuer Client"></a>
+            <a href="<?= url_for('people', $pid, 'edit') ?>" class="edit_person"><img src="img/edit.png" alt="edit"></a>
+            <a href="<?= url_for('people', $pid) ?>" data-method="delete"><img src="img/delete.png" alt="delete"></a>
         </div>
     
         <strong><?= $person['nachname'] ?></strong> <?= $person['vorname'] ?></span>
@@ -32,7 +32,7 @@
 <?php content_for('controls'); ?>
 <div id="controls">
     <ul>
-        <li><a href="<?= url_for('people','new') ?>" id="createPerson">Neue Person</a></li>
+        <li><a href="<?= url_for('people','new') ?>" id="createPerson"><img src="img/create_person.png" alt="Neue Person" title="Neue Person"></a></li>
     </ul>
 </div>
 <?php end_content_for(); ?>

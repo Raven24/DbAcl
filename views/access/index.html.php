@@ -5,7 +5,7 @@
 <dl class="listitem role" data-id="<?= $role['rolle_id'] ?>">
     <dt>
         <div class="controls">
-            [<a href="<?= url_for('roles', $role['rolle_id'], 'service', 'new') ?>" class="add_service">Dienst hinzufügen</a>]
+            <a href="<?= url_for('roles', $role['rolle_id'], 'service', 'new') ?>" class="add_service"><img src="img/add.png" alt="Dienst hinzufügen" title="Dienst hinzufügen"></a>
         </div>
         <strong><?= $role['rolle_name'] ?></strong> <small><?= $role['rolle_desc'] ?></small>
     </dt>

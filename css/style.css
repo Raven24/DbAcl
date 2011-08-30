@@ -409,6 +409,11 @@ dl.listitem {
     margin-bottom: 1em;
     width: 61%;
 }
+.listitem dd {
+    margin-top: 2px;
+    padding-top: 2px;
+    border-top: 1px solid #DDD;
+}
 .controls {
     float: right;
 }
@@ -448,9 +453,18 @@ form .field {
 .invisible { visibility: hidden; }
 
 /* Contain floats: h5bp.com/q */ 
-.clearfix:before, .clearfix:after { content: ""; display: table; }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+.clearfix:before,
+.clearfix:after,
+.listitem dd:before,
+.listitem dd:after,
+.listitem dt:before,
+.listitem dt:after { content: ""; display: table; }
+.clearfix:after,
+.listitem dd:after,
+.listitem dt:after { clear: both; }
+.clearfix,
+.listitem dd,
+.listitem dt { zoom: 1; }
 
 
 

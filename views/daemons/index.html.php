@@ -5,9 +5,9 @@
 <dl class="listitem daemon" data-id="<?= $daemon['did'] ?>">
     <dt>
         <div class="controls">
-            [<a href="<?= url_for('ports', 'new', array('daemon_id'=>$daemon['did'])) ?>" class="add_port">Port eintragen</a>]
-            [<a href="<?= url_for('daemons', $daemon['did'], 'edit') ?>" class="edit_daemon">edit</a>]
-            [<a href="<?= url_for('daemons', $daemon['did']) ?>" data-method="delete">delete</a>]
+            <a href="<?= url_for('ports', 'new', array('daemon_id'=>$daemon['did'])) ?>" class="add_port"><img src="img/add.png" alt="Port eintragen" title="Port eintragen"></a>
+            <a href="<?= url_for('daemons', $daemon['did'], 'edit') ?>" class="edit_daemon"><img src="img/edit.png" alt="edit"></a>
+            <a href="<?= url_for('daemons', $daemon['did']) ?>" data-method="delete"><img src="img/delete.png" alt="delete"></a>
         </div>
         <strong><?= $daemon['name'] ?></strong>
     </dt>
@@ -27,7 +27,7 @@ foreach($daemon['ports'] as $port) {
 <?php content_for('controls'); ?>
 <div id="controls">
     <ul>
-        <li><a href="<?= url_for('daemons','new') ?>" id="createDaemon">Neuer Daemon</a></li>
+        <li><a href="<?= url_for('daemons','new') ?>" id="createDaemon"><img src="img/create_daemon.png" alt="Neuer Daemon" title="Neuer Daemon"></a></li>
     </ul>
 </div>
 <?php end_content_for(); ?>

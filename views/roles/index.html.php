@@ -5,9 +5,9 @@
 <dl class="listitem role" data-id="<?= $role['rid'] ?>">
     <dt>
         <div class="controls">
-            [<a href="<?= url_for('roles', $role['rid'], 'people', 'new') ?>" class="add_person">Person hinzufügen</a>]
-            [<a href="<?= url_for('roles', $role['rid'], 'edit') ?>" class="edit_role">edit</a>]
-            [<a href="<?= url_for('roles', $role['rid']) ?>" data-method="delete">delete</a>]
+            <a href="<?= url_for('roles', $role['rid'], 'people', 'new') ?>" class="add_person"><img src="img/add.png" alt="Person hinzufügen" title="Person hinzufügen"></a>
+            <a href="<?= url_for('roles', $role['rid'], 'edit') ?>" class="edit_role"><img src="img/edit.png" alt="edit"></a>
+            <a href="<?= url_for('roles', $role['rid']) ?>" data-method="delete"><img src="img/delete.png" alt="delete"></a>
         </div>
         <strong><?= $role['name'] ?></strong> <small><?= $role['desc'] ?></small>
     </dt>   
@@ -27,7 +27,7 @@ foreach($role['people'] as $person) {
 <?php content_for('controls'); ?>
 <div id="controls">
     <ul>
-        <li><a href="<?= url_for('roles','new') ?>" id="createRole">Neue Rolle</a></li>
+        <li><a href="<?= url_for('roles','new') ?>" id="createRole"><img src="img/create_role.png" alt="Neue Rolle" title="Neue Rolle"></a></li>
     </ul>
 </div>
 <?php end_content_for(); ?>
