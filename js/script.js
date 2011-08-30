@@ -6,7 +6,7 @@ $('.button, button').button();
 
 $('*[data-method=delete]').live("click", function(){
     if(confirm('are you sure?'))
-    {
+    {            
         $.ajax(this.href, {
             type: 'DELETE',
             //dataType: 'script',
@@ -19,7 +19,7 @@ $('*[data-method=delete]').live("click", function(){
     return false;
 });
 
-$('*[data-remote=true]').live("submit", function() {
+$('*[data-remote=true]').live("submit", function() {    
     $.post(this.action, $(this).serialize(), null, 'script');
     return false;
 });

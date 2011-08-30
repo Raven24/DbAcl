@@ -1,0 +1,2 @@
+$('#daemons_servers_form').wrap('<dd data-id="<?= $daemon['id'] ?>"></dd>');
+$('#daemons_servers_form').replaceWith(<?= encode_javascript(render('daemons/show.html.php', null, array('server'=>$server, 'daemon'=>$daemon))) ?>)

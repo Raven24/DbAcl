@@ -287,7 +287,7 @@ class MySQL
     var $lastResult = null;
     var $currentDb = '';
     var $dbConn = null;
-    var $debug = true;
+    var $debug = false;
 
     /**
      * constructor
@@ -404,15 +404,19 @@ class MySQL
     }
 
     /**
-     * generates some human-readable debug output in case mysql experiences
-     * some sort of error
+     * generates some human-readable debug output and exits
+     * in case mysql experiences some sort of error, trigger a php error, too
      */
     function dbg($echo=false)
     {
         if( $this->debug || $echo )
         {
             echo "Last Query: {$this->lastQuery}<br>";
-            wrapper_error();
+            
+            if( !$this->lastResult ) 
+                trigger_error(wrapper_error(), E_USER_ERROR);
+                
+            ob_end_flush();
             exit;
         }
 

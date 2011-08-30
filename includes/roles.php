@@ -25,7 +25,8 @@ function roles_index()
     $arrRoles = array();
     foreach($arrRoleAssocs as $entry)
     {
-        if( $currRole != $entry['rid'] ) {            
+        if( $currRole != $entry['rid'] )
+        {            
             $currRole = $entry['rid'];
             $arrRoles[$currRole] = $entry;
             $arrRoles[$currRole]['people'] = array();
@@ -50,7 +51,7 @@ function roles_new()
     else
     {
         //html('roles/new.html.php');
-        halt(NOT_IMPLEMENTED);
+        halt(HTTP_NOT_IMPLEMENTED);
     }
 }
 

@@ -12,7 +12,7 @@ $GLOBALS['cfg'] = array(
     'tblPerson'         => 'person',
     'tblPort'           => 'port',
     'tblRolle'          => 'rolle',
-    'tblSerber'         => 'server',
+    'tblServer'         => 'server',
     'tblZugriff'        => 'zugriff',
     'tblPersonHasRolle' => 'person_has_rolle',
 );
@@ -40,6 +40,10 @@ include('includes/people.php');
 include('includes/clients.php');
 include('includes/roles.php');
 include('includes/people_roles.php');
+include('includes/daemons.php');
+include('includes/ports.php');
+include('includes/servers.php');
+include('includes/daemons_servers.php');
 
 # limonade configuration
 function configure()
@@ -57,7 +61,7 @@ function before()
         <a href="'.url_for('people').'">Personen</a>
         <a href="'.url_for('roles').'">Rollen</a>
         <a href="'.url_for('zugriffe').'">Zugriff</a>
-        <a href="'.url_for('server').'">Server</a>
+        <a href="'.url_for('servers').'">Server</a>
         <a href="'.url_for('daemons').'">Daemons</a>
     ');
     set('footer', '&copy; 2011 - Alexander Philipp Lintenhofer (Backend), Florian Staudacher (Frontent)');

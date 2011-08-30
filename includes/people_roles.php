@@ -21,7 +21,7 @@ function people_roles_new()
     if( isAjaxRequest() )
         return js('people_roles/new.js.php', null);
     else
-        halt(NOT_IMPLEMENTED);
+        halt(HTTP_NOT_IMPLEMENTED);
 }
 
 # associate a person with a role
@@ -64,7 +64,7 @@ function people_roles_create()
     if( isAjaxRequest() )
         return js('people_roles/show.js.php', null);
     else
-        halt(NOT_IMPLEMENTED);
+        halt(HTTP_NOT_IMPLEMENTED);
 }
 
 # delete the link between role and person
@@ -96,7 +96,7 @@ function people_roles_delete()
     if( isAjaxRequest() )
         return js('people_roles/delete.js.php', null);
     else
-        halt(NOT_IMPLEMENTED);
+        halt(HTTP_NOT_IMPLEMENTED);
 }
 
 ?>
