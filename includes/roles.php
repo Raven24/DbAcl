@@ -14,10 +14,10 @@ function roles_index()
                 {$cfg['tblRole']}.*,
                 {$cfg['tblPerson']}.*
         FROM {$cfg['tblRole']}
-        LEFT OUTER JOIN {$cfg['tblPersonHasRolle']}
-        ON {$cfg['tblPersonHasRolle']}.rolle_id = {$cfg['tblRole']}.id
+        LEFT OUTER JOIN {$cfg['tblPersonHasRole']}
+        ON {$cfg['tblPersonHasRole']}.rolle_id = {$cfg['tblRole']}.id
         LEFT OUTER JOIN {$cfg['tblPerson']}
-        ON {$cfg['tblPerson']}.id = {$cfg['tblPersonHasRolle']}.person_id
+        ON {$cfg['tblPerson']}.id = {$cfg['tblPersonHasRole']}.person_id
         ORDER BY {$cfg['tblRole']}.name ASC, {$cfg['tblPerson']}.nachname ASC"
     );
 
@@ -146,7 +146,7 @@ function roles_delete()
     );
 
     $resultPersonForeign = $db->delete(
-        "DELETE FROM {$cfg['tblPersonHasRolle']}
+        "DELETE FROM {$cfg['tblPersonHasRole']}
         WHERE rolle_id=$id"
     );
 

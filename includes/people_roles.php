@@ -35,7 +35,7 @@ function people_roles_create()
     $person_id = intval($_POST['person_id']);
 
     $result = $db->insert(
-        "INSERT INTO {$cfg['tblPersonHasRolle']}
+        "INSERT INTO {$cfg['tblPersonHasRole']}
         (person_id, rolle_id) VALUES
         ('$person_id', '$role_id')"
     );
@@ -78,7 +78,7 @@ function people_roles_delete()
     $person_id = intval(params('person_id'));
 
     $result = $db->delete(
-        "DELETE FROM {$cfg['tblPersonHasRolle']}
+        "DELETE FROM {$cfg['tblPersonHasRole']}
         WHERE rolle_id='$role_id'
         AND person_id='$person_id'
         LIMIT 1"        

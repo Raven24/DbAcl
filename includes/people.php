@@ -149,7 +149,7 @@ function people_delete()
     );
 
     $resHasRolleForeign = $db->delete(
-        "DELETE FROM {$cfg['tblPersonHasRolle']}
+        "DELETE FROM {$cfg['tblPersonHasRole']}
         WHERE person_id=$id"
     );
 

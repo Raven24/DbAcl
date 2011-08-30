@@ -14,7 +14,7 @@ $GLOBALS['cfg'] = array(
     'tblRole'           => 'rolle',
     'tblServer'         => 'server',
     'tblAccess'         => 'zugriff',
-    'tblPersonHasRolle' => 'person_has_rolle',
+    'tblPersonHasRole'  => 'person_has_rolle',
 );
 
 # database handling
