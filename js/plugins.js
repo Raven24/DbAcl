@@ -21,8 +21,31 @@ window.log = function(){
 
 // register a function that is triggered on ajax error
 $('body').ajaxError(function(){
-    alert("Ajax Error - the request could not be completed\n\nEither the server responded with an error code or the response contained a (script) error.");
+    alert("Ajax Error - the request could not be completed\n\nEither the server responded with an error code or \nthe response contained a (script) error.");
+    hideOverlay();    
 });
 
+var overlay = $('<div id="overlay"></div>');
+
 // loading indicator
+var loading_grey = $('<img src="img/loading_g.gif" alt="loading">');
 var loading = '<div style="margin-top: 3em; text-align:center;" id="loading"><img src="img/loading_w.gif" alt="loading..."></div>';
+
+var showOverlay = function()
+{
+    $('body').append(overlay);
+    $('#overlay').fadeIn('fast', function() {
+        $(this).append(loading_grey);
+    });
+    $('#overlay img').css({
+        display: 'block',
+        margin: '10em auto'
+    });
+};
+
+var hideOverlay = function()
+{
+    $('#overlay').fadeOut('fast', function() {
+        $(this).remove();
+    });
+};

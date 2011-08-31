@@ -428,6 +428,21 @@ form .field {
 }
 
 
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: -moz-linear-gradient(top, rgba(100,100,100,0.2) 0%, rgba(0,0,0,0) 30em); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,100,100,0.2)), color-stop(30em,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* W3C */
+}
+
 /* ==|== non-semantic helper classes ========================================
    Please define your styles before this section.
    ========================================================================== */

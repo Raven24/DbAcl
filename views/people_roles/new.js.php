@@ -6,4 +6,5 @@ abort.click(function(){
 });
 form.find('.actions').append(abort);
 
+$('dl[data-id=<?= $role['id'] ?>] dd').slideToggle('fast','swing');
 $('dl[data-id=<?= $role['id'] ?>]').append(form);
