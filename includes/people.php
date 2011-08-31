@@ -32,7 +32,8 @@ function people_index()
             $arrPersonen[$currPerson]['clients'] = array();
         }
 
-        array_push($arrPersonen[$currPerson]['clients'], $entry);
+        if( isset($entry['cid']) )
+            array_push($arrPersonen[$currPerson]['clients'], $entry);
     }
 
     set('people', $arrPersonen);

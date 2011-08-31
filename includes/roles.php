@@ -32,7 +32,8 @@ function roles_index()
             $arrRoles[$currRole]['people'] = array();
         }
 
-        array_push( $arrRoles[$currRole]['people'], $entry);
+        if( isset($entry['pid']) )
+            array_push( $arrRoles[$currRole]['people'], $entry);
     }
 
     set('roles', $arrRoles);

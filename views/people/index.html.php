@@ -1,16 +1,16 @@
-<h1>Listing People</h1>
+<h1><?= _('Listing people') ?></h1>
 
 <?php foreach($people as $pid=>$person) { ?>
 
   <dl class="listitem person" data-id="<?= $pid ?>">
     <dt>
         <div class="controls">
-            <a href="#" onclick="createClient(this, <?= $pid ?>); return false;"><img src="img/add.png" alt="Neuer Client" title="Neuer Client"></a>
-            <a href="<?= url_for('people', $pid, 'edit') ?>" class="edit_person"><img src="img/edit.png" alt="edit"></a>
-            <a href="<?= url_for('people', $pid) ?>" data-method="delete"><img src="img/delete.png" alt="delete"></a>
+            <a href="<?= url_for('clients', 'new', array('person_id' => $pid)) ?>" class="add_client"><img src="img/add.png" alt="<?= _('New client') ?>" title="<?= _('New client') ?>"></a>
+            <a href="<?= url_for('people', $pid, 'edit') ?>" class="edit_person"><img src="img/edit.png" alt="<?= _('Edit person') ?>" title="<?= _('Edit person') ?>"></a>
+            <a href="<?= url_for('people', $pid) ?>" data-method="delete"><img src="img/delete.png" alt="<?= _('Delete person') ?>" title="<?= _('Delete person') ?>"></a>
         </div>
     
-        <strong><?= $person['nachname'] ?></strong> <?= $person['vorname'] ?></span>
+        <strong><?= $person['nachname'] ?></strong> <?= $person['vorname'] ?> <small>(<?= sprintf(ngettext('%d client', '%d clients', count($person['clients'])), count($person['clients'])) ?>)</small>
     </dt>
 <?php foreach($person['clients'] as $client) { ?>
 
@@ -26,7 +26,7 @@
 <?php content_for('controls'); ?>
 <div id="controls">
     <ul>
-        <li><a href="<?= url_for('people','new') ?>" id="createPerson"><img src="img/create_person.png" alt="Neue Person" title="Neue Person"></a></li>
+        <li><a href="<?= url_for('people','new') ?>" id="createPerson"><img src="img/create_person.png" alt="<?= _('Create person') ?>" title="<?= _('Create person') ?>"></a></li>
     </ul>
 </div>
 <?php end_content_for(); ?>
@@ -35,59 +35,23 @@
 <?php content_for('scripts'); ?>
 <script type="text/javascript">
 
-$('.edit_person').live("click", function(){
-    var dialog = $('<div id="editPerson"></div>');
-    $('body').append(dialog);
+// hide the clients on pageload
+$('dd').hide();
 
-    $.get(this.href, {}, function(response) {
-        dialog.html(response);
-        $('#editPerson').find('input[type=submit]').remove();
-    });
+// make name clickable and show clients onclick
+$('dt')
+  .css('cursor','pointer')
+  .click(function() {
+    var children = $(this).parents('dl').find('dd');
+    children.slideToggle('fast', 'swing');
+  });
 
-    dialog.dialog({
-        title: 'Person bearbeiten',
-        modal: true,
-        buttons: [
-            {
-                text: 'Speichern',
-                click: function() {
-                    $('#editPerson').find('form').submit();
-                }
-            }
-        ]
-    });
-
-    return false;
-});
-
-$('.edit_client').live("click", function(){
+$('#createPerson, .add_client, .edit_person').click( function() {
     $.getScript(this.href);
     return false;
 });
-
-$('#createPerson').click(function() {
-    var dialog = $('<div id="create_person"></div>');
-    $('body').append(dialog);
-
-    $.get(this.href, {}, function(response){
-        dialog.html(response);
-        $('#create_person').find('input[type=submit]').remove();
-    });
-
-    dialog.dialog({
-        title: 'Person erstellen',
-        modal: true,
-        buttons:[
-            {
-                text: 'Speichern',
-                click: function() {
-                    $('#create_person').find('form').submit();
-                }
-            }
-        ]
-    });
-
-    return false;
+$('.edit_client').live("click", function(event){
+    $.getScript(this.href);
 });
 
 var createClient = function(element, id)

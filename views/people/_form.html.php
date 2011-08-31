@@ -6,17 +6,17 @@ $method = (isset($person)) ? 'PUT' : 'POST';
     <input type="hidden" name="id" value="<?= $person['id'] ?>">
 
     <div class="field">
-        <label>Vorname</label>
+        <label><?= _('First name') ?></label>
         <input type="text" name="vorname" value="<?= $person['vorname'] ?>">
     </div>
 
     <div class="field">
-        <label>Nachname</label>
+        <label><?= _('Last name') ?></label>
         <input type="text" name="nachname" value="<?= $person['nachname'] ?>">
     </div>
 
     <div class="actions">
-        <input type="submit" value="Speichern">
+        <input type="submit" value="<?= _('save') ?>">
     </div>
 
 </form>
