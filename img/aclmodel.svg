@@ -15,9 +15,9 @@
    id="svg2"
    inkscape:version="0.48.1 r9760"
    sodipodi:docname="aclmodel.svg"
-   inkscape:export-filename="/media/E879-A120/dbacl/dbacl.git/img/aclmodel.png"
-   inkscape:export-xdpi="97.199997"
-   inkscape:export-ydpi="97.199997">
+   inkscape:export-filename="/share/site/php_versuche/staudacher/acl/img/aclmodel.png"
+   inkscape:export-xdpi="97.115997"
+   inkscape:export-ydpi="97.115997">
   <metadata
      id="metadata1696">
     <rdf:RDF>
@@ -45,9 +45,9 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:zoom="2.03"
-     inkscape:cx="548.66173"
-     inkscape:cy="873.76125"
+     inkscape:zoom="1.43"
+     inkscape:cx="216.20319"
+     inkscape:cy="856.97803"
      inkscape:window-x="48"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -1289,20 +1289,6 @@
        d="m 281.95953,69.03823 5.66797,-5.67187 -5.66797,-5.66797 z m 0,0"
        id="path244"
        inkscape:connector-curvature="0" />
-    <g
-       style="fill:#000000;fill-opacity:1"
-       id="g1586"
-       transform="matrix(0,1,-1,0,326.46344,-217.26255)" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.13385797;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
-       d="M 286.76814,79.530349"
-       id="path1596" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.13385797;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
-       d="M 281.79158,50.389728"
-       id="path1604" />
     <path
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
        d="m 559.84294,81.926883 3.96875,0 0,4.535157 -3.96875,0 z m 0,0"
@@ -1358,16 +1344,6 @@
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          inkscape:connector-curvature="0" />
     </g>
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.13385797;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
-       d="M 422.93269,90.780765"
-       id="path1640" />
-    <path
-       inkscape:connector-curvature="0"
-       style="fill:none;stroke:#000000;stroke-width:1.13385797;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"
-       d="M 452.18659,77.050301"
-       id="path1648" />
     <g
        id="g4766"
        transform="translate(-1.9851765,8.7940706)">
