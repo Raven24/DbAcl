@@ -4,7 +4,7 @@ $method = (isset($client)) ? 'PUT' : 'POST';
 <form action="<?= url_for('/clients')?>" method="post" data-remote="true" id="client_form">
     <input type="hidden" name="_method" value="<?= $method ?>">
     <input type="hidden" name="id" value="<?= $client['id'] ?>">
-    <input type="hidden" name="person_id" value="<?= $person_id ?>">
+    <input type="hidden" name="person_id" value="<?= (!empty($person_id)) ? $person_id : $client['person_id']  ?>">
 
     <div class="field">
         <label>Typ</label>
