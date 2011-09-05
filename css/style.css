@@ -345,7 +345,7 @@ header a:active {
 }
 #main {
     margin: 2em 0 0;
-    padding: .4em 1.2em;
+    padding: .4em 1.2em 1em;
     background: #DADADA;
     border: 1px solid #AAA;
     min-height: 200px;
@@ -427,20 +427,65 @@ form .field {
     display: inline-block;
 }
 
-
 #overlay {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    background: -moz-linear-gradient(top, rgba(100,100,100,0.2) 0%, rgba(0,0,0,0) 30em); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,100,100,0.2)), color-stop(30em,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* IE10+ */
+    background: -moz-linear-gradient(top, rgba(100,100,100,0.2) 0%, rgba(0,0,0,0) 20em); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(100,100,100,0.2)), color-stop(20em,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 20em); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 20em); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 20em); /* IE10+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-    background: linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 30em); /* W3C */
+    background: linear-gradient(top, rgba(100,100,100,0.2) 0%,rgba(0,0,0,0) 20em); /* W3C */
+}
+
+/* drag & drop styles */
+.dragitems {
+    width: 48%;
+    float: left;
+}
+.dropitems {
+    width: 48%;
+    float: right;
+    text-align: right;
+}
+.dragitems > div,
+.dropitems > div {
+    background: #EEE;
+    padding: .3em .6em;
+    margin: 0 .2em .2em 0;
+    display: inline-block;
+    min-width: 12em;
+    -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;
+}
+.dragitems > div {
+    width: 13em;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.dragitems * {
+    white-space: nowrap;
+}
+.dropitems > div {
+    padding: 1em .5em;
+}
+.dropitems > div div {
+    padding: .5em 0;
+}
+.dragitems div img {
+    float: left;
+    margin: .3em .3em 0 0;
+}
+.dragitems div small { white-space: nowrap; }
+
+div.dropHighlight {
+    background: #EED;
+}
+div.dropHover {
+    background: #EFE;
 }
 
 /* ==|== non-semantic helper classes ========================================

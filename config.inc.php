@@ -74,10 +74,11 @@ function before()
             <area id="access_nav" shape="rect" href="'.url_for('access').'" coords="391,7,478,28" />
             <area id="roles_nav" shape="rect" href="'.url_for('roles').'" coords="239,7,340,28" />
             <area id="people_nav" shape="rect" href="'.url_for('people').'" coords="74,7,193,28" />
+            <area id="clients_nav" shape="rect" href="'.url_for('clients').'" coords="2,55,98,76" />
             <area id="people_roles_nav" shape="rect" href="'.url_for('people_roles').'" coords="176,54,267,75" />
         </map>
     ');
-    set('footer', '&copy; 2011 - Alexander Philipp Lintenhofer (Backend), Florian Staudacher (Frontent)');
+    set('footer', '&copy; 2011 - Florian Staudacher (Frontend), Alexander Philipp Lintenhofer (Backend)');
 }
 
 # output after page rendering

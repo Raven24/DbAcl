@@ -31,6 +31,7 @@ var overlay = $('<div id="overlay"></div>');
 var loading_grey = $('<img src="img/loading_g.gif" alt="loading">');
 var loading = '<div style="margin-top: 3em; text-align:center;" id="loading"><img src="img/loading_w.gif" alt="loading..."></div>';
 
+// show a dark background with loading indicator on top
 var showOverlay = function()
 {
     $('body').append(overlay);
@@ -39,13 +40,53 @@ var showOverlay = function()
     });
     $('#overlay img').css({
         display: 'block',
-        margin: '10em auto'
+        margin: '7em auto'
     });
 };
 
+// hide loading overlay
 var hideOverlay = function()
 {
     $('#overlay').fadeOut('fast', function() {
         $(this).remove();
     });
+};
+
+// hide the aggregated items in the lists and show them on click
+var handleAggregates = function(hideAll)
+{
+    if( hideAll && hideAll == true )
+    {
+        // hide the aggregates on pageload
+        $('.listitem dd').hide();
+    }
+
+    // make name clickable and show aggregates onclick
+    $('.listitem dt small').each(function(i, element) {
+        $(element).unbind('click').removeAttr('style');
+        var children = $(element).parents('dl').find('dd');
+
+        // calculate the number of elements and replace it
+        $(this).text($(this).text().replace(/[0-9]+/g, children.length));
+        
+        if( children.length > 0 )
+        {
+            $(element)
+            .css({
+                'cursor': 'pointer',
+                'text-decoration': 'underline'
+            })
+            .click(function() {
+                children.slideToggle('fast', 'swing');
+            });
+        }
+    });
+};
+
+// default settings for draggable items
+var dragDefaults = {
+    revert: 'invalid',
+    opacity: 0.7,
+    distance: 20,
+    helper: "clone"
 };

@@ -59,10 +59,11 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
   <script src="js/jquery-ui.min.js"></script>
+  <script src="js/color.js"></script>
 
   <!-- scripts concatenated and minified via ant build script-->
   <script defer src="js/jquery.maphilight.js"></script>
-  <script defer src="js/plugins.js"></script>
+  <script src="js/plugins.js"></script>
   <script defer src="js/script.js"></script>
 
   <?= (isset($scripts)) ? $scripts : '' ?>

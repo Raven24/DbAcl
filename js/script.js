@@ -46,9 +46,4 @@ var data = $('#'+currentNav+'_nav').data('maphilight') || {};
 data.alwaysOn = true;
 $('#'+currentNav+'_nav').data('maphilight', data).trigger('alwaysOn.maphilight');
 
-
-
-
-
-
-
+handleAggregates(true);

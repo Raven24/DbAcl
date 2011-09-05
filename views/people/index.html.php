@@ -35,17 +35,6 @@
 <?php content_for('scripts'); ?>
 <script type="text/javascript">
 
-// hide the clients on pageload
-$('dd').hide();
-
-// make name clickable and show clients onclick
-$('dt')
-  .css('cursor','pointer')
-  .click(function() {
-    var children = $(this).parents('dl').find('dd');
-    children.slideToggle('fast', 'swing');
-  });
-
 $('#createPerson, .add_client, .edit_person').click( function() {
     $.getScript(this.href);
     return false;
