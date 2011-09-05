@@ -5,19 +5,18 @@
   <dl class="listitem person" data-id="<?= $pid ?>">
     <dt>
         <div class="controls">
-            <a href="<?= url_for('clients', 'new', array('person_id' => $pid)) ?>" class="add_client"><img src="img/add.png" alt="<?= _('New client') ?>" title="<?= _('New client') ?>"></a>
+            <a href="<?= url_for('clients', 'new', array('person_id' => $pid, 'nested'=>'person')) ?>" class="add_client"><img src="img/add.png" alt="<?= _('New client') ?>" title="<?= _('New client') ?>"></a>
             <a href="<?= url_for('people', $pid, 'edit') ?>" class="edit_person"><img src="img/edit.png" alt="<?= _('Edit person') ?>" title="<?= _('Edit person') ?>"></a>
             <a href="<?= url_for('people', $pid) ?>" data-method="delete"><img src="img/delete.png" alt="<?= _('Delete person') ?>" title="<?= _('Delete person') ?>"></a>
         </div>
     
         <strong><?= $person['nachname'] ?></strong> <?= $person['vorname'] ?> <small>(<?= sprintf(ngettext('%d client', '%d clients', count($person['clients'])), count($person['clients'])) ?>)</small>
     </dt>
-<?php foreach($person['clients'] as $client) { ?>
+<?php foreach($person['clients'] as $client) { 
 
-    <dd data-id="<?= $client['cid'] ?>">
-        <?= render('clients/show.html.php', null, array('client'=>$client)) ?>
-    </dd>
-<?php  } ?>
+    echo partial('clients/show.person.html.php', array('client'=>$client));
+   
+} ?>
 
   </dl>
 <?php } ?>
@@ -43,12 +42,6 @@ $('.edit_client').live("click", function(event){
     $.getScript(this.href);
     return false;
 });
-
-var createClient = function(element, id)
-{
-    $.getScript('<?= str_replace('&amp;', '&', url_for('clients', 'new', array('person_id'=>''))) ?>'+id);
-    return false;
-};
 
 var currentNav = "people";
 
