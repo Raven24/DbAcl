@@ -30,6 +30,16 @@ $GLOBALS['db']->selectDb( $GLOBALS['cfg']['db'] );
 
 header('Content-Type: text/html; charset=utf-8');
 
+# gettext configuration
+$gettext_domain = 'messages';
+$gettext_lang   = 'de_AT';
+
+putenv ('LANG='.$gettext_lang);
+setlocale(LC_ALL, $gettext_lang);
+bindtextdomain($gettext_domain, './locale');
+bind_textdomain_codeset($gettext_domain, 'UTF-8');
+textdomain($gettext_domain);
+
 include('includes/functions.inc.php');
 include('includes/auth.inc.php');
 
