@@ -52,6 +52,7 @@ $('#createPerson, .add_client, .edit_person').click( function() {
 });
 $('.edit_client').live("click", function(event){
     $.getScript(this.href);
+    return false;
 });
 
 var createClient = function(element, id)
