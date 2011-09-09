@@ -1,9 +1,17 @@
-var form = $(<?= encode_javascript(render('clients/_form.html.php', null, array('person_id'=>$person_id, 'nested'=>$nested))) ?>);
-var abort = $('<button>Cancel</button>');
-abort.click(function(){
-    form.remove();
-    return false;
-});
-form.find('.actions').append(abort);
+var dialog = $('<div id="create_client"></div>');
+dialog.append(<?= encode_javascript(render('clients/_form.html.php', null, array('remote'=>'false'))) ?>);
+dialog.find('input[type=submit]').remove();
+$('body').append(dialog);
 
-$('dl[data-id=<?= $person_id ?>]').append(form).find('dd').show();
+dialog.dialog({
+    title: '<?= _('Create client') ?>',
+    modal: true,
+    buttons:[
+        {
+            text: '<?= _('save') ?>',
+            click: function() {
+                $('#create_client').find('form').submit();
+            }
+        }
+    ]
+});

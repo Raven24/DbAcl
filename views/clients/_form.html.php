@@ -1,5 +1,6 @@
 <?php
-$method    = (isset($client))    ? 'PUT'      : 'POST';
+$method = (isset($client))  ? 'PUT'   : 'POST';
+$remote = (!isset($remote)) ? 'true'  : $remote;
 
 /**
  * If the form is not displayed as nested element, show a selector for people,
@@ -14,7 +15,7 @@ $method    = (isset($client))    ? 'PUT'      : 'POST';
 $person_id = (isset($person_id)) ? $person_id : $client['person_id'];
 if( $person_id == 0 ) $person_id = "";
 ?>
-<form action="<?= url_for('/clients')?>" method="post" data-remote="true" id="client_form">
+<form action="<?= url_for('/clients')?>" method="post" data-remote="<?= $remote ?>" id="client_form">
     <input type="hidden" name="_method" value="<?= $method ?>">
     <input type="hidden" name="nested" value="<?= $nested ?>">
     <input type="hidden" name="id" value="<?= $client['id'] ?>">

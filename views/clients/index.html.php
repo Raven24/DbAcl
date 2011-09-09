@@ -14,7 +14,7 @@ form { display: inline-block; }
 <?php content_for('controls'); ?>
 <div id="controls">
     <ul>
-        <!--<li><a href="<?= url_for('servers','new') ?>" id="createServer"><img src="img/create_server.png" alt="Neuer Server" title="Neuer Server"></a></li>-->
+        <li><a href="<?= url_for('clients','new') ?>" id="createClient"><img src="img/create_client.png" alt="<?= _("New client") ?>" title="<?= _("New client") ?>"></a></li>
     </ul>
 </div>
 <?php end_content_for(); ?>
@@ -22,7 +22,7 @@ form { display: inline-block; }
 <?php content_for('scripts'); ?>
 <script type="text/javascript">
 
-$('.edit_client').live("click", function() {
+$('.edit_client, #createClient').live("click", function() {
     $.getScript(this.href);
     return false;
 });
