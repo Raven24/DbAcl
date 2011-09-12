@@ -28,7 +28,7 @@ foreach($role['people'] as $person) {
 <?php content_for('controls'); ?>
 <div id="controls">
     <ul>
-        <li><a href="<?= url_for('roles','new') ?>" id="createRole"><img src="img/create_role.png" alt="Neue Rolle" title="Neue Rolle"></a></li>
+        <li><a href="<?= url_for('roles','new') ?>" id="createRole"><img src="img/create_role.png" alt="<?= _("Create role") ?>" title="<?= _("Create role") ?>"></a></li>
     </ul>
 </div>
 <?php end_content_for(); ?>

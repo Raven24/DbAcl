@@ -1,15 +1,15 @@
-<h1>Listing Servers</h1>
+<h1><?= _("Listing servers") ?></h1>
 
 <?php foreach( $servers as $server ) { ?>
 
 <dl class="listitem server" data-id="<?= $server['sid'] ?>">
     <dt>
         <div class="controls">
-            <a href="<?= url_for('servers', $server['sid'], 'daemons', 'new') ?>" class="add_daemon"><img src="img/add.png" alt="Dienst hinzufügen" title="Dienst hinzufügen"></a>
-            <a href="<?= url_for('servers', $server['sid'], 'edit') ?>" class="edit_role"><img src="img/edit.png" alt="edit"></a>
-            <a href="<?= url_for('servers', $server['sid']) ?>" data-method="delete"><img src="img/delete.png" alt="delete"></a>
+            <a href="<?= url_for('servers', $server['sid'], 'daemons', 'new') ?>" class="add_daemon"><img src="img/add.png" alt="<?= _("New service") ?>" title="<?= _("New daemon") ?>"></a>
+            <a href="<?= url_for('servers', $server['sid'], 'edit') ?>" class="edit_role"><img src="img/edit.png" alt="<?= _('Edit service') ?>" title="<?= _('Edit server') ?>"></a>
+            <a href="<?= url_for('servers', $server['sid']) ?>" data-method="delete"><img src="img/delete.png" alt="<?= _('Delete service') ?>" title="<?= _('Delete server') ?>"></a>
         </div>
-        <strong><?= $server['fqdn'] ?></strong> <small><?= $server['desc'] ?></small><br>
+        <strong><?= $server['fqdn'] ?></strong> <span><?= $server['desc'] ?></span> <small>(<?= sprintf(ngettext('%d daemon', '%d daemons', count($server['daemons'])), count($server['daemons'])) ?>)</small><br>
         <?= $server['mac'] ?> - <?= $server['ip'] ?>
     </dt>
 <?php
@@ -28,7 +28,7 @@ foreach($server['daemons'] as $daemon) {
 <?php content_for('controls'); ?>
 <div id="controls">
     <ul>
-        <li><a href="<?= url_for('servers','new') ?>" id="createServer"><img src="img/create_server.png" alt="Neuer Server" title="Neuer Server"></a></li>
+        <li><a href="<?= url_for('servers','new') ?>" id="createServer"><img src="img/create_server.png" alt="<?= _("Create server") ?>" title="<?= _("Create server") ?>"></a></li>
     </ul>
 </div>
 <?php end_content_for(); ?>

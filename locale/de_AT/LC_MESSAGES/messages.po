@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-09 13:07+0200\n"
+"POT-Creation-Date: 2011-09-12 10:39+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Staudacher <florian_staudacher@yahoo.de>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -29,6 +29,7 @@ msgstr[0] "%d Service"
 msgstr[1] "%d Services"
 
 #: views/access/show.html.php:3
+#: views/servers/index.html.php:10
 msgid "Delete service"
 msgstr "Service löschen"
 
@@ -70,6 +71,34 @@ msgstr "Client löschen"
 msgid "belongs to"
 msgstr "gehört zu"
 
+#: views/daemons/index.html.php:1
+msgid "Listing daemons"
+msgstr "Daemons"
+
+#: views/daemons/index.html.php:8
+msgid "New port"
+msgstr "Neuer Port"
+
+#: views/daemons/index.html.php:9
+msgid "Edit daemon"
+msgstr "Daemon bearbeiten"
+
+#: views/daemons/index.html.php:10
+#: views/daemons/show.html.php:3
+msgid "Delete daemon"
+msgstr "Daemon löschen"
+
+#: views/daemons/index.html.php:12
+#, php-format
+msgid "%d port"
+msgid_plural "%d ports"
+msgstr[0] "%d Port"
+msgstr[1] "%d Ports"
+
+#: views/daemons/index.html.php:30
+msgid "Create daemon"
+msgstr "Neuer Daemon"
+
 #: views/people/_form.html.php:9
 msgid "First name"
 msgstr "Vorname"
@@ -88,6 +117,7 @@ msgid "Listing people"
 msgstr "Personen"
 
 #: views/people/index.html.php:10
+#: views/people/show.html.php:3
 msgid "Delete person"
 msgstr "Person löschen"
 
@@ -120,6 +150,10 @@ msgstr "Personen ihren Rollen zuordnen"
 msgid "person"
 msgstr "Person"
 
+#: views/ports/show.html.php:3
+msgid "Delete port"
+msgstr "Port löschen"
+
 #: views/roles/index.html.php:8
 msgid "Add person"
 msgstr "Person hinzufügen"
@@ -131,4 +165,43 @@ msgstr "Rolle bearbeiten"
 #: views/roles/index.html.php:10
 msgid "Delete role"
 msgstr "Rolle Löschen"
+
+#: views/roles/index.html.php:31
+msgid "Create role"
+msgstr "Neue Rolle"
+
+#: views/servers/index.html.php:1
+msgid "Listing servers"
+msgstr "Server"
+
+#: views/servers/index.html.php:8
+msgid "New service"
+msgstr "Neuer Service"
+
+#: views/servers/index.html.php:8
+msgid "New daemon"
+msgstr "Neuer Daemon"
+
+#: views/servers/index.html.php:9
+msgid "Edit service"
+msgstr "Service bearbeiten"
+
+#: views/servers/index.html.php:9
+msgid "Edit server"
+msgstr "Server bearbeiten"
+
+#: views/servers/index.html.php:10
+msgid "Delete server"
+msgstr "Server löschen"
+
+#: views/servers/index.html.php:12
+#, php-format
+msgid "%d daemon"
+msgid_plural "%d daemons"
+msgstr[0] "%d Daemon"
+msgstr[1] "%d Daemons"
+
+#: views/servers/index.html.php:31
+msgid "Create server"
+msgstr "Neuer Server"
 
