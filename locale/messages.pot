@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-09 13:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: views/access/index.html.php:1 views/roles/index.html.php:1
+msgid "Listing roles"
+msgstr ""
+
+#: views/access/index.html.php:8
+msgid "Add service"
+msgstr ""
+
+#: views/access/index.html.php:10
+#, php-format
+msgid "%d service"
+msgid_plural "%d services"
+msgstr[0] ""
+msgstr[1] ""
+
+#: views/access/show.html.php:3
+msgid "Delete service"
+msgstr ""
+
+#: views/access/show.html.php:6
+msgid "on"
+msgstr ""
+
+#: views/clients/index.html.php:1
+msgid "Listing clients"
+msgstr ""
+
+#: views/clients/index.html.php:17 views/people/index.html.php:8
+msgid "New client"
+msgstr ""
+
+#: views/clients/new.js.php:7
+msgid "Create client"
+msgstr ""
+
+#: views/clients/new.js.php:11 views/people/_form.html.php:19
+#: views/people/edit.js.php:11 views/people/new.js.php:11
+msgid "save"
+msgstr ""
+
+#: views/clients/show.html.php:4 views/clients/show.person.html.php:4
+msgid "Edit client"
+msgstr ""
+
+#: views/clients/show.html.php:5 views/clients/show.person.html.php:5
+msgid "Delete client"
+msgstr ""
+
+#: views/clients/show.html.php:10
+msgid "belongs to"
+msgstr ""
+
+#: views/people/_form.html.php:9
+msgid "First name"
+msgstr ""
+
+#: views/people/_form.html.php:14
+msgid "Last name"
+msgstr ""
+
+#: views/people/edit.js.php:7 views/people/index.html.php:9
+msgid "Edit person"
+msgstr ""
+
+#: views/people/index.html.php:1
+msgid "Listing people"
+msgstr ""
+
+#: views/people/index.html.php:10
+msgid "Delete person"
+msgstr ""
+
+#: views/people/index.html.php:13 views/people_roles/index.html.php:8
+#, php-format
+msgid "%d client"
+msgid_plural "%d clients"
+msgstr[0] ""
+msgstr[1] ""
+
+#: views/people/index.html.php:28 views/people/new.js.php:7
+msgid "Create person"
+msgstr ""
+
+#: views/people_roles/_role.html.php:10 views/roles/index.html.php:12
+#, php-format
+msgid "%d person"
+msgid_plural "%d people"
+msgstr[0] ""
+msgstr[1] ""
+
+#: views/people_roles/index.html.php:1
+msgid "Assign people to their roles"
+msgstr ""
+
+#: views/people_roles/index.html.php:6
+msgid "person"
+msgstr ""
+
+#: views/roles/index.html.php:8
+msgid "Add person"
+msgstr ""
+
+#: views/roles/index.html.php:9
+msgid "Edit role"
+msgstr ""
+
+#: views/roles/index.html.php:10
+msgid "Delete role"
+msgstr ""
