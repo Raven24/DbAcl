@@ -46,16 +46,19 @@ include('includes/auth.inc.php');
 # limonade micro php framework - http://www.limonade-php.net
 include('lib/limonade.php');
 
-# the 'controllers' 
-include('includes/people.php');
-include('includes/clients.php');
-include('includes/roles.php');
-include('includes/people_roles.php');
-include('includes/daemons.php');
-include('includes/ports.php');
-include('includes/servers.php');
-include('includes/daemons_servers.php');
-include('includes/access.php');
+# include the 'controllers' 
+$arrControllers = array(
+	'access',  	'clients',
+	'daemons', 	'daemons_servers',
+	'people', 	'people_roles',
+	'ports',	'roles',	
+	'servers'
+);
+foreach( $arrControllers as $controller ) 
+{
+	include('includes/'.$controller.'.php');
+}
+
 
 # limonade configuration
 function configure()
@@ -77,15 +80,15 @@ function before()
         <a href="'.url_for('daemons').'">Daemons</a>
     ');*/
     set('header', '
-        <img id="header_img" src="img/aclmodel.png" width="850" height="83" usemap="#head_nav">
+        <img id="header_img" src="img/aclmodel.png" width="850" height="83" usemap="#head_nav" alt="header_navigation">
         <map name="head_nav">
-            <area id="daemons_nav" shape="rect" href="'.url_for('daemons').'" coords="682,7,781,28" />
-            <area id="servers_nav" shape="rect" href="'.url_for('servers').'" coords="516,7,635,28" />
-            <area id="access_nav" shape="rect" href="'.url_for('access').'" coords="391,7,478,28" />
-            <area id="roles_nav" shape="rect" href="'.url_for('roles').'" coords="239,7,340,28" />
-            <area id="people_nav" shape="rect" href="'.url_for('people').'" coords="74,7,193,28" />
-            <area id="clients_nav" shape="rect" href="'.url_for('clients').'" coords="2,55,98,76" />
-            <area id="people_roles_nav" shape="rect" href="'.url_for('people_roles').'" coords="176,54,267,75" />
+            <area id="daemons_nav" shape="rect" href="'.url_for('daemons').'" coords="682,7,781,28" alt="daemons">
+            <area id="servers_nav" shape="rect" href="'.url_for('servers').'" coords="516,7,635,28" alt="servers">
+            <area id="access_nav" shape="rect" href="'.url_for('access').'" coords="391,7,478,28" alt="access">
+            <area id="roles_nav" shape="rect" href="'.url_for('roles').'" coords="239,7,340,28" alt="roles">
+            <area id="people_nav" shape="rect" href="'.url_for('people').'" coords="74,7,193,28" alt="people">
+            <area id="clients_nav" shape="rect" href="'.url_for('clients').'" coords="2,55,98,76" alt="clients">
+            <area id="people_roles_nav" shape="rect" href="'.url_for('people_roles').'" coords="176,54,267,75" alt="people_roles">
         </map>
     ');
     set('footer', '&copy; 2011 - Florian Staudacher (Frontend), Alexander Philipp Lintenhofer (Backend)');
