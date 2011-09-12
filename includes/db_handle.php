@@ -1,286 +1,5 @@
 <?php
 
-$wrapper_current_db = "";
-$db_connection = null;
-$wrapper_host = $GLOBALS['cfg']['db_host'];
-$wrapper_user = $GLOBALS['cfg']['db_user'];
-$wrapper_pwd  = $GLOBALS['cfg']['db_pass'];
-
-
-// define some wrapper functions to abstract the db-specific calls
-
-function wrapper_select_db($db) {
-	global $db_connection, $wrapper_current_db;
-
-	if (!mysql_select_db($db, $db_connection)) {
-		echo "Kann DB nicht wechseln.\n";
-		exit;
-	}
-	$wrapper_current_db = $db;
-}
-
-function wrapper_query($sql) {
-	global $db_connection;
-
-	return mysql_query($sql, $db_connection);
-}
-
-function wrapper_num_rows($result) {
-	return mysql_num_rows($result);
-}
-
-function wrapper_fetch_row($result) {
-	return mysql_fetch_row($result);
-}
-
-function wrapper_free_result($result) {
-	return mysql_free_result($result);
-}
-
-function wrapper_escape($string) {
-	return mysql_escape_string($string);
-}
-
-function wrapper_unescape($string) {
-	return ereg_replace("\\\\\\\\","\\",ereg_replace("\\\\'","'",ereg_replace("\\\\\"","\"",$string)));
-}
-
-function wrapper_insert_id($dbConn=null) {
-    global $db_connection;
-
-    if( $dbConn != null ) {
-        $db_connection = $dbConn;
-    }
-    
-	return mysql_insert_id($db_connection);
-}
-
-// ==========================================================================================================
-// ==========================================================================================================
-// LiHo-code, converted
-
-function wrapper_error($text='Query failed!') {
-	$nr = mysql_errno();
-	$msg = mysql_error ();
-	echo "$text - ( $nr : $msg )<br>";
-	exit;
-}
-// ==========================================================================================================
-function wrapper_init($dbase) {
-	global $db_connection, $wrapper_current_db, $wrapper_host, $wrapper_user, $wrapper_pwd;
-
-	$db_connection = mysql_connect($wrapper_host,$wrapper_user,$wrapper_pwd);
-	if ($db_connection) {
-		if (!mysql_select_db($dbase, $db_connection)) {
-			wrapper_error("No connection to database!");
-		}
-	} else {
-		wrapper_error("Database not found!");
-	}
-	$wrapper_current_db = $dbase;
-	return true;
-}
-// ==========================================================================================================
-function wrapper_select($sql="") {
-	global $db_connection;
-
-	if (empty($sql)) {
-		return false;
-	}
-	if (!eregi("^select",$sql)) {
-		echo "Invalid query!";
-		return false;
-	}
-	if (!empty($db_connection)) {
-		$resultat = mysql_query($sql, $db_connection);
-	} else {
-		return false;
-	}
-		if ((!$resultat) || (empty($resultat))) {
-		return false;
-	}
-	$i=0;
-	$arrDaten = array();
-	while ($reihe = mysql_fetch_row($resultat)) {
-		$arrDaten[$i++] = $reihe;
-	}
-	mysql_free_result($resultat);
-	return $arrDaten;
-}
-// ==========================================================================================================
-function wrapper_query_in_hash($sql="", $dbConn=null) {
-	global $db_connection;
-
-    if( $dbConn != null ) {
-        $db_connection = $dbConn;
-    }
-    
-	if (empty($sql)) {
-		return false;
-	}
-	if (!eregi("^select",$sql)) {
-		echo "Invalid query!";
-		return false;
-	}
-	if (!empty($db_connection)) {
-		$resultat = mysql_query($sql, $db_connection);
-	} else {
-		return false;
-	}
-		if ((!$resultat) || (empty($resultat))) {
-		return false;
-	}
-
-	$arrDaten = array();
-
-	while ($hash_reihe = mysql_fetch_array($resultat,MYSQL_ASSOC)) {
-		array_push($arrDaten,$hash_reihe);
-	}
-
-	mysql_free_result($resultat);
-	return $arrDaten;
-}
-// ==========================================================================================================
-function wrapper_query_in_singlelist($sql="") {
-    global $db_connection;
-
-    if (empty($sql)) {
-        return false;
-    }
-    if (!eregi("^select",$sql)) {
-        echo "Invalid query!";
-        return false;
-    }
-    if (!empty($db_connection)) {
-        $resultat = mysql_query($sql, $db_connection);
-    } else {
-        return false;
-    }
-        if ((!$resultat) || (empty($resultat))) {
-        return false;
-    }
-
-    $arrDaten = array();
-
-    while ($currItem = mysql_fetch_row($resultat)) {
-        array_push($arrDaten,$currItem[0]);
-    }
-
-    mysql_free_result($resultat);
-    return $arrDaten;
-}
-// ==========================================================================================================
-function wrapper_single_query($sql="") {
-	global $db_connection;
-
-	if (empty($sql)) {
-		return false;
-	}
-	if (!eregi("^select",$sql)) {
-		echo "Invalid query!";
-		return false;
-	}
-	if (!empty($db_connection)) {
-		$resultat = mysql_query($sql, $db_connection);
-	} else {
-		return false;
-	}
-		if ((!$resultat) || (empty($resultat))) {
-		return false;
-	}
-
-	if (mysql_num_rows($resultat)==1)
-	{
-	    $hash_reihe = mysql_fetch_array($resultat,MYSQL_ASSOC);
-    }
-    else $hash_reihe = false;
-
-	mysql_free_result($resultat);
-
-	return $hash_reihe;
-}
-// ==========================================================================================================
-function wrapper_insert($sql="", $dbConn=null) {
-	global $db_connection;
-
-    if( $dbConn != null ) {
-        $db_connection = $dbConn;
-    }
-
-	if (empty($sql)) {
-		return false;
-	}
-	if (!eregi("^insert",$sql)) {
-		echo "Invalid query!";
-		return false;
-	}
-	if (empty($db_connection)) {
-		return false;
-	}
-	$resultat = mysql_query($sql, $db_connection);
-	/*if ($resultat) {
-		$resultat = mysql_insert_id();
-		return $resultat;
-	} else {
-		return false;
-	}*/
-	return $resultat;
-}
-// ==========================================================================================================
-function wrapper_update($sql="", $dbConn=null) {
-	global $db_connection;
-
-    if( $dbConn != null ) {
-        $db_connection = $dbConn;
-    }
-    
-	if (empty($sql)) {
-		return false;
-	}
-	if (!eregi("^update",$sql)) {
-		echo "Invalid query!";
-		return false;
-	}
-	if (empty($db_connection)) {
-		return false;
-	}
-	$resultat = mysql_query($sql, $db_connection);
-	return $resultat;
-}
-// ==========================================================================================================
-function wrapper_delete($sql="", $dbConn=null) {
-	global $db_connection;
-
-    if( $dbConn != null ) {
-        $db_connection = $dbConn;
-    }
-
-	if (empty($sql)) {
-		return false;
-	}
-	if (!eregi("^delete",$sql)) {
-		echo "Invalid query!";
-		return false;
-	}
-	if (empty($db_connection)) {
-		return false;
-	}
-	$resultat = mysql_query($sql, $db_connection);
-	return $resultat;
-}
-// ==========================================================================================================
-function wrapper_optimize($tabelle) {
-	global $db_connection;
-
-	$sql = "OPTIMIZE TABLE ".$tabelle;
-	if (empty($db_connection)) {
-		return false;
-	}
-	$resultat = mysql_query($sql, $db_connection);
-	return $resultat;
-}
-// ==========================================================================================================
-
 /**
  * mysql database class
  * provides the default database actions and some debugging methods
@@ -327,10 +46,7 @@ class MySQL
      */
     function query($_sql='')
     {
-        if(empty($_sql)) {
-            return false;
-        }
-
+    	$this->beforeQuery('', $_sql);
         $this->lastResult = mysql_query($_sql, $this->dbConn) or $this->dbg();
         return $this->lastResult;
     }
@@ -340,10 +56,16 @@ class MySQL
      */
     function select($_sql)
     {
-        $this->lastQuery = $_sql;
-        $this->lastResult = wrapper_query_in_hash($_sql, $this->dbConn) or $this->dbg();
+        $this->beforeQuery('SELECT', $_sql);
+        $this->lastResult = $this->query($_sql) or $this->dbg();
+
+        $arrData = array();
+        while( $row = mysql_fetch_array($this->lastResult, MYSQL_ASSOC))
+        {
+        	array_push($arrData, $row);
+        }
         
-        return $this->lastResult;
+        return $arrData;
     }
 
     /**
@@ -351,9 +73,8 @@ class MySQL
      */
     function insert($_sql)
     {
-        $this->lastQuery = $_sql;
-        $this->lastResult = wrapper_insert($_sql, $this->dbConn) or $this->dbg();
-
+        $this->beforeQuery('INSERT', $_sql);
+        $this->lastResult = $this->query($_sql) or $this->dbg();
         return $this->lastResult;
     }
 
@@ -362,22 +83,45 @@ class MySQL
      */
     function update($_sql)
     {
-        $this->lastQuery = $_sql;
-        $this->lastResult = wrapper_update($_sql, $this->dbConn) or $this->dbg();
-
+        $this->beforeQuery('UPDATE', $_sql);
+        $this->lastResult = $this->query($_sql) or $this->dbg();
         return $this->lastResult;
     }
-
+    
     /**
      * execute a delete query
      */
     function delete($_sql)
     {
-        $this->lastQuery = $_sql;
-        $this->lastResult = wrapper_delete($_sql, $this->dbConn) or $this->dbg();
-
+        $this->beforeQuery('DELETE', $_sql);
+        $this->lastResult = $this->query($_sql) or $this->dbg();
         return $this->lastResult;
     }
+    
+    /**
+     * free last mysql result
+     */
+    function freeResult() {
+    	if( is_resource($this->lastResult) )
+    	{
+    		$retVal = mysql_free_result($this->lastResult);
+    		unset($this->lastResult);
+    		return $retVal; 
+    	}	
+    }
+    
+    /**
+     * optimize table
+     */
+	function optimize($_table='')
+	{
+		$sql = "OPTIMIZE TABLE ".$_table;
+		$this->beforeQuery("OPTIMIZE TABLE", $sql);
+		if( empty($_table) ) $this->debug(true);
+		
+		$this->lastResult = $this->query($sql) or $this->dbg();
+		return $this->lastResult;
+	}
 
     /**
      * number of rows returned by the last result
@@ -385,7 +129,7 @@ class MySQL
     function numRows()
     {
         if( $this->lastResult )
-            return wrapper_num_rows($this->lastResult);
+            return mysql_num_rows($this->lastResult);
 
         return 0;
     }
@@ -396,7 +140,7 @@ class MySQL
     function insertId()
     {
         if( $this->lastResult )
-            return wrapper_insert_id();
+            return mysql_insert_id($this->dbConn);
 
         return 0;
     }
@@ -406,23 +150,65 @@ class MySQL
      */
     function escape($str='')
     {
-        return mysql_real_escape_string($str, $this->dbConn);
+    	if( $this->dbConn )
+        	return mysql_real_escape_string($str, $this->dbConn);
+        
+        return $str;
+    }
+    
+    /**
+     * do some rudimental checking to see if the query is valid
+     * 
+     * @access private
+	 * @param String query type
+	 * @param String sql query
+	 * @return boolean
+     */
+    function checkQuery($type="", $sql)
+    {
+    	if( empty($sql) ) return false;
+	    return preg_match("/^".$type."/i", $sql);
+    }
+    
+    /**
+     * some actions that should be done before the query
+     * 
+     * @access private
+     * @param String query type
+     * @param String query string
+     */
+    function beforeQuery($type='', $sql)
+    {
+    	$this->freeResult();
+    	$this->lastQuery = $sql;
+    	if( !$this->dbConn ) $this->dbg(true);
+    	if( !$this->checkQuery($type, $sql) ) $this->dbg(true);
     }
 
     /**
      * generates some human-readable debug output and exits
      * in case mysql experiences some sort of error, trigger a php error, too
+     * 
+     * @param boolean if true (or $this->debug is true), force output and exit
      */
     function dbg($echo=false)
     {
         if( $this->debug || $echo )
         {
-            echo "Last Query: {$this->lastQuery}<br>";
+            $strDebug = "Last Query: {$this->lastQuery}<br>";
             
             if( !$this->lastResult ) 
-                trigger_error(wrapper_error(), E_USER_ERROR);
-                
+            {
+            	$nr = mysql_errno();
+				$msg = mysql_error ();
+            	$strError = "$strDebug - ( $nr : $msg )<br>";
+            	
+            	trigger_error($strError, E_USER_ERROR);
+            }
+            
+            echo $strDebug;    
             ob_end_flush();
+            
             exit;
         }
 
