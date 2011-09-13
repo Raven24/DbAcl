@@ -6,4 +6,4 @@ abort.click(function(){
 });
 form.find('.actions').append(abort);
 
-$('dl[data-id=<?= $daemon_id ?>]').append(form);
+$('dl[data-id=<?= $daemon_id ?>]').append(form).find('dd').show();

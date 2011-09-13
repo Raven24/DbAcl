@@ -1,14 +1,38 @@
 <?php
 
+# show a list of clients
+dispatch('/ports', 'ports_index');
+function ports_index()
+{
+    $arrPorts = fetchPorts();
+
+    set('ports', $arrPorts);
+
+    return html('ports/index.html.php');
+}
+
 # show form for new port
 dispatch('/ports/new', 'ports_new');
 function ports_new()
 {
+	$cfg = $GLOBALS['cfg'];
+    $db  = $GLOBALS['db'];
+    
     set('daemon_id', $_GET['daemon_id']);
+    
+    $nesting = get_nesting();
+    
+    // fetch all daemons for dropdown
+    $arrDaemons = $db->select(
+        "SELECT *
+        FROM {$cfg['tblDaemon']}
+        ORDER BY name ASC"
+    );
+    set('daemons', $arrDaemons);
 
     if( isAjaxRequest() )
     {
-        return js('ports/new.js.php', null);
+        return js('ports/new'.$nesting.'.js.php', null);
     }
 
     halt(HTTP_NOT_IMPLEMENTED);
@@ -79,6 +103,42 @@ function ports_delete()
         return js('ports/delete.js.php', null);
     else
         halt(HTTP_NOT_IMPLEMENTED);
+}
+
+/**
+ * fetch ports and return them with the associated daemon
+ * in an array
+ */
+function fetchPorts($where='WHERE 1')
+{
+    $cfg = $GLOBALS['cfg'];
+    $db  = $GLOBALS['db'];
+
+    # query the database
+    $arrPortsDaemons = $db->select(
+        "SELECT {$cfg['tblPort']}.id as pid,
+                {$cfg['tblDaemon']}.id as did,
+                {$cfg['tblPort']}.*,
+                {$cfg['tblDaemon']}.*
+        FROM {$cfg['tblPort']}
+        LEFT JOIN {$cfg['tblDaemon']}
+        ON {$cfg['tblPort']}.daemon_id = {$cfg['tblDaemon']}.id
+        $where
+        ORDER BY {$cfg['tblPort']}.number ASC"
+    );
+
+    # put the person data in it's own array
+    $arrPorts = array();
+    foreach( $arrPortsDaemons as $entry )
+    {
+        if( isset($entry['pid']) )
+        {
+            $entry['daemon'] = $entry;
+        }
+        array_push($arrPorts, $entry);
+    }
+
+    return $arrPorts;
 }
 
 ?>

@@ -3,12 +3,12 @@
     <input type="hidden" name="daemon_id" value="<?= $daemon_id ?>">
 
     <div class="field">
-        <label>Nummer</label>
+        <label><?= _("number") ?></label>
         <input type="text" name="number" value="<?= $port['number'] ?>">
     </div>
 
     <div class="field">
-        <label>Proto</label>
+        <label><?= _("protocol") ?></label>
         <select name="proto">
             <option value="tcp" <?= ($port['proto']=='tcp') ? 'selected="selected"' : '' ?>>tcp</option>
             <option value="udp" <?= ($port['proto']=='udp') ? 'selected="selected"' : '' ?>>udp</option>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="actions">
-        <input type="submit" value="Speichern">
+        <input type="submit" value="<?= _("save") ?>">
     </div>
 
 </form>
