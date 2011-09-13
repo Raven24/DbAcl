@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 10:39+0200\n"
+"POT-Creation-Date: 2011-09-13 15:24+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Staudacher <florian_staudacher@yahoo.de>\n"
 "Language-Team: \n"
@@ -37,6 +37,34 @@ msgstr "Service löschen"
 msgid "on"
 msgstr "auf"
 
+#: views/clients/_form.html.php:27
+msgid "type"
+msgstr "Typ"
+
+#: views/clients/_form.html.php:35
+msgid "description"
+msgstr "Beschreibung"
+
+#: views/clients/_form.html.php:40
+msgid "MAC address"
+msgstr "MAC Adresse"
+
+#: views/clients/_form.html.php:46
+#: views/people_roles/index.html.php:6
+msgid "person"
+msgstr "Person"
+
+#: views/clients/_form.html.php:59
+#: views/clients/new.js.php:11
+#: views/daemons/_form.html.php:14
+#: views/daemons/new.js.php:11
+#: views/people/_form.html.php:19
+#: views/people/edit.js.php:11
+#: views/people/new.js.php:11
+#: views/ports/_form.html.php:19
+msgid "save"
+msgstr "speichern"
+
 #: views/clients/index.html.php:1
 msgid "Listing clients"
 msgstr "Clients"
@@ -50,12 +78,11 @@ msgstr "Neuer Client"
 msgid "Create client"
 msgstr "Neuer Client"
 
-#: views/clients/new.js.php:11
-#: views/people/_form.html.php:19
-#: views/people/edit.js.php:11
-#: views/people/new.js.php:11
-msgid "save"
-msgstr "speichern"
+#: views/clients/new.person.js.php:2
+#: views/ports/new.daemon.js.php:2
+#: views/ports/new.js.php:2
+msgid "cancel"
+msgstr "abbrechen"
 
 #: views/clients/show.html.php:4
 #: views/clients/show.person.html.php:4
@@ -68,14 +95,20 @@ msgid "Delete client"
 msgstr "Client löschen"
 
 #: views/clients/show.html.php:10
+#: views/ports/show.html.php:9
 msgid "belongs to"
 msgstr "gehört zu"
+
+#: views/daemons/_form.html.php:9
+msgid "name"
+msgstr "Name"
 
 #: views/daemons/index.html.php:1
 msgid "Listing daemons"
 msgstr "Daemons"
 
 #: views/daemons/index.html.php:8
+#: views/ports/index.html.php:17
 msgid "New port"
 msgstr "Neuer Port"
 
@@ -96,6 +129,7 @@ msgstr[0] "%d Port"
 msgstr[1] "%d Ports"
 
 #: views/daemons/index.html.php:30
+#: views/daemons/new.js.php:7
 msgid "Create daemon"
 msgstr "Neuer Daemon"
 
@@ -146,13 +180,26 @@ msgstr[1] "%d Personen"
 msgid "Assign people to their roles"
 msgstr "Personen ihren Rollen zuordnen"
 
-#: views/people_roles/index.html.php:6
-msgid "person"
-msgstr "Person"
+#: views/ports/_form.html.php:6
+msgid "number"
+msgstr "Nummer"
 
-#: views/ports/show.html.php:3
+#: views/ports/_form.html.php:11
+msgid "protocol"
+msgstr "Protokoll"
+
+#: views/ports/index.html.php:1
+msgid "Listing ports"
+msgstr "Ports"
+
+#: views/ports/show.daemon.html.php:3
+#: views/ports/show.html.php:4
 msgid "Delete port"
 msgstr "Port löschen"
+
+#: views/ports/show.html.php:6
+msgid "port"
+msgstr "Port"
 
 #: views/roles/index.html.php:8
 msgid "Add person"

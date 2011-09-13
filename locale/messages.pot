@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 10:39+0200\n"
+"POT-Creation-Date: 2011-09-13 15:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,29 @@ msgstr ""
 msgid "on"
 msgstr ""
 
+#: views/clients/_form.html.php:27
+msgid "type"
+msgstr ""
+
+#: views/clients/_form.html.php:35
+msgid "description"
+msgstr ""
+
+#: views/clients/_form.html.php:40
+msgid "MAC address"
+msgstr ""
+
+#: views/clients/_form.html.php:46 views/people_roles/index.html.php:6
+msgid "person"
+msgstr ""
+
+#: views/clients/_form.html.php:59 views/clients/new.js.php:11
+#: views/daemons/_form.html.php:14 views/daemons/new.js.php:11
+#: views/people/_form.html.php:19 views/people/edit.js.php:11
+#: views/people/new.js.php:11 views/ports/_form.html.php:19
+msgid "save"
+msgstr ""
+
 #: views/clients/index.html.php:1
 msgid "Listing clients"
 msgstr ""
@@ -53,9 +76,9 @@ msgstr ""
 msgid "Create client"
 msgstr ""
 
-#: views/clients/new.js.php:11 views/people/_form.html.php:19
-#: views/people/edit.js.php:11 views/people/new.js.php:11
-msgid "save"
+#: views/clients/new.person.js.php:2 views/ports/new.daemon.js.php:2
+#: views/ports/new.js.php:2
+msgid "cancel"
 msgstr ""
 
 #: views/clients/show.html.php:4 views/clients/show.person.html.php:4
@@ -66,15 +89,19 @@ msgstr ""
 msgid "Delete client"
 msgstr ""
 
-#: views/clients/show.html.php:10
+#: views/clients/show.html.php:10 views/ports/show.html.php:9
 msgid "belongs to"
+msgstr ""
+
+#: views/daemons/_form.html.php:9
+msgid "name"
 msgstr ""
 
 #: views/daemons/index.html.php:1
 msgid "Listing daemons"
 msgstr ""
 
-#: views/daemons/index.html.php:8
+#: views/daemons/index.html.php:8 views/ports/index.html.php:17
 msgid "New port"
 msgstr ""
 
@@ -93,7 +120,7 @@ msgid_plural "%d ports"
 msgstr[0] ""
 msgstr[1] ""
 
-#: views/daemons/index.html.php:30
+#: views/daemons/index.html.php:30 views/daemons/new.js.php:7
 msgid "Create daemon"
 msgstr ""
 
@@ -139,12 +166,24 @@ msgstr[1] ""
 msgid "Assign people to their roles"
 msgstr ""
 
-#: views/people_roles/index.html.php:6
-msgid "person"
+#: views/ports/_form.html.php:6
+msgid "number"
 msgstr ""
 
-#: views/ports/show.html.php:3
+#: views/ports/_form.html.php:11
+msgid "protocol"
+msgstr ""
+
+#: views/ports/index.html.php:1
+msgid "Listing ports"
+msgstr ""
+
+#: views/ports/show.daemon.html.php:3 views/ports/show.html.php:4
 msgid "Delete port"
+msgstr ""
+
+#: views/ports/show.html.php:6
+msgid "port"
 msgstr ""
 
 #: views/roles/index.html.php:8
