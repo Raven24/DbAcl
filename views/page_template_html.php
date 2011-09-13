@@ -59,8 +59,6 @@
   <script src="js/jquery-ui.min.js"></script>
 
   <!-- scripts concatenated and minified via ant build script-->
-  <script defer src="js/raphael-min.js"></script>
-  <script defer src="js/jquery.jeditable.min.js"></script>
   <script defer src="js/plugins.js"></script>
   <script defer src="js/script.js"></script>
 
