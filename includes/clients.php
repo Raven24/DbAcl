@@ -20,21 +20,19 @@ function clients_new()
 
     set('person_id', $_GET['person_id']);
 
-    $nested = addslashes($_GET['nested']);
-    set('nested', $_GET['nested']);
-    if( !empty($nested) ) $nested = '.'.$nested;
+    $nesting = get_nesting();
 
+    // fetch people for the dropdown
     $arrPeople = $db->select(
         "SELECT *
         FROM {$cfg['tblPerson']}
         ORDER BY nachname ASC"
     );
-
     set('people', $arrPeople);
 
     if( isAjaxRequest() )
     {
-        return js('clients/new'.$nested.'.js.php', null);
+        return js('clients/new'.$nesting.'.js.php', null);
     }
 
     return html('clients/new.html.php');

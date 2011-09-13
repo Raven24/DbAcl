@@ -5,7 +5,7 @@
 <dl class="listitem daemon" data-id="<?= $daemon['did'] ?>">
     <dt>
         <div class="controls">
-            <a href="<?= url_for('ports', 'new', array('daemon_id'=>$daemon['did'])) ?>" class="add_port"><img src="img/add.png" alt="<?= _("New port") ?>" title="<?= _("New port") ?>"></a>
+            <a href="<?= url_for('ports', 'new', array('daemon_id'=>$daemon['did'], 'nested'=>'daemon')) ?>" class="add_port"><img src="img/add.png" alt="<?= _("New port") ?>" title="<?= _("New port") ?>"></a>
             <a href="<?= url_for('daemons', $daemon['did'], 'edit') ?>" class="edit_daemon"><img src="img/edit.png" alt="<?= _("Edit daemon") ?>" title="<?= _("Edit daemon") ?>"></a>
             <a href="<?= url_for('daemons', $daemon['did']) ?>" data-method="delete"><img src="img/delete.png" alt="<?= _("Delete daemon") ?>" title="<?= _("Delete daemon") ?>"></a>
         </div>
@@ -17,7 +17,7 @@ foreach($daemon['ports'] as $port) {
     $port['id'] = $port['pid'];
 ?>
     <dd data-id="<?= $port['pid'] ?>">
-        <?= render('ports/show.html.php', null, array('port'=>$port, 'daemon'=>$daemon)) ?>
+        <?= render('ports/show.daemon.html.php', null, array('port'=>$port, 'daemon'=>$daemon)) ?>
     </dd>
 <?php } ?>
 </dl>

@@ -24,7 +24,7 @@ if( $person_id == 0 ) $person_id = "";
 <?php } ?>
 
     <div class="field">
-        <label>Typ</label>
+        <label><?= _("type") ?></label>
         <select name="type">
             <option value="desktop" <?= ($client['type']=='desktop') ? 'selected="selected"' : '' ?>>desktop</option>
             <option value="laptop"  <?= ($client['type']=='laptop')  ? 'selected="selected"' : '' ?>>laptop</option>
@@ -32,18 +32,18 @@ if( $person_id == 0 ) $person_id = "";
     </div>
 
     <div class="field">
-        <label>Desc</label>
+        <label><?= _("description") ?></label>
         <input type="text" name="desc" value="<?= $client['desc'] ?>">
     </div>
 
     <div class="field">
-        <label>Mac</label>
+        <label><?= _("MAC address") ?></label>
         <input type="text" name="mac" value="<?= $client['mac'] ?>">
     </div>
 
 <?php if( empty($nested) ) { ?>
     <div class="field">
-        <label>Person</label>
+        <label><?= _("person") ?></label>
         <select name="person_id">
 <?php
 foreach($people as $person) {
@@ -56,7 +56,7 @@ foreach($people as $person) {
 <?php } ?>
 
     <div class="actions">
-        <input type="submit" value="Speichern">
+        <input type="submit" value="<? _("save") ?>">
     </div>
 
 </form>

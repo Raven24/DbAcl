@@ -6,11 +6,11 @@ $method = (isset($daemon)) ? 'PUT' : 'POST';
     <input type="hidden" name="id" value="<?= $daemon['id'] ?>">
 
     <div class="field">
-        <label>Name</label>
+        <label><?= _("name") ?></label>
         <input type="text" name="name" value="<?= $daemon['name'] ?>">
     </div>
 
     <div class="actions">
-        <input type="submit" value="Speichern">
+        <input type="submit" value="<?= _("save") ?>">
     </div>
 </form>

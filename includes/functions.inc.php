@@ -35,6 +35,17 @@ function encode_javascript($str)
 }
 
 /**
+ * get and return the nesting of another model
+ */
+function get_nesting()
+{
+	$nesting = addslashes($_GET['nested']);
+    set('nested', $_GET['nested']);
+    if( !empty($nesting) ) $nesting = '.'.$nesting;
+    return $nesting;
+}
+
+/**
  * php 4 compatibility functions.
  * simulate some functions that are available only in newer php versions
  */

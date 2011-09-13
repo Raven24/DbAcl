@@ -4,11 +4,11 @@ dialog.find('input[type=submit]').remove();
 $('body').append(dialog);
 
 dialog.dialog({
-    title: 'Daemon erstellen',
+    title: '<?= _("Create daemon") ?>',
     modal: true,
     buttons: [
         {
-            text: 'Speichern',
+            text: '<?= _("save") ?>',
             click: function() {
                 $('#create_daemon').find('form').submit();
             }
