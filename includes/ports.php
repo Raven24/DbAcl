@@ -44,7 +44,10 @@ function ports_create()
 {
     $cfg = $GLOBALS['cfg'];
     $db  = $GLOBALS['db'];
-
+	
+    // which view to render
+    $nesting   = get_nesting();
+    
     $number    = intval($_POST['number']);
     $proto     = $db->escape($_POST['proto']);
     $daemon_id = intval($_POST['daemon_id']);
@@ -63,17 +66,13 @@ function ports_create()
         return;
     }
 
-    set('port', array(
-        'id'        =>$id,
-        'number'    =>$number,
-        'proto'     =>$proto,
-        'daemon_id' =>$daemon_id
-    ));
+    $arrPorts = fetchPorts("WHERE {$cfg['tblPort']}.id=$id");
+    set('port', array_pop($arrPorts));
 
     if( isAjaxRequest() )
-        return js('ports/show.js.php', null);
+        return js('ports/show.js.php', null, array('nested' => $nesting));
     else
-        halt(HTTP_NOT_IMPLEMENTED);
+        redirect_to('ports');
    
 }
 

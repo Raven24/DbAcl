@@ -1,9 +1,17 @@
-var form = $(<?= encode_javascript(render('ports/_form.html.php', null, array('daemon_id'=>$daemon_id))) ?>);
-var abort = $('<button><?= _("cancel") ?></button>');
-abort.click(function(){
-    form.remove();
-    return false;
-});
-form.find('.actions').append(abort);
+var dialog = $('<div id="create_port"></div>');
+dialog.append(<?= encode_javascript(render('ports/_form.html.php', null, array('remote'=>'false'))) ?>);
+dialog.find('input[type=submit]').remove();
+$('body').append(dialog);
 
-$('dl[data-id=<?= $daemon_id ?>]').append(form);
+dialog.dialog({
+    title: '<?= _('Create port') ?>',
+    modal: true,
+    buttons:[
+        {
+            text: '<?= _('save') ?>',
+            click: function() {
+                $('#create_port').find('form').submit();
+            }
+        }
+    ]
+});

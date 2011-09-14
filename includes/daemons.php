@@ -29,8 +29,9 @@ function daemons_index()
             $arrDaemons[$currDaemon] = $entry;
             $arrDaemons[$currDaemon]['ports'] = array();
         }
-
-        array_push( $arrDaemons[$currDaemon]['ports'], $entry);
+		
+        if( isset($entry['pid']) )
+        	array_push( $arrDaemons[$currDaemon]['ports'], $entry);
     }
 
     set('daemons', $arrDaemons);

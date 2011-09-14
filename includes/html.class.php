@@ -1,5 +1,9 @@
 <?php
 
+/** 
+ * HTML helper class,
+ * create some elements easier with php
+ */
 class HTML extends Object 
 {
 	

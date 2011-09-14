@@ -46,8 +46,7 @@ function clients_create()
     $db  = $GLOBALS['db'];
 
     // sets which view to render
-    $nested = addslashes($_POST['nested']);
-    if( !empty($nested) ) $nested = '.'.$nested;
+    $nested = get_nesting();
 
     $type      = $db->escape($_POST['type']);
     $mac       = $db->escape($_POST['mac']);

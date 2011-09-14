@@ -40,7 +40,9 @@ function encode_javascript($str)
 function get_nesting()
 {
 	$nesting = addslashes($_GET['nested']);
-    set('nested', $_GET['nested']);
+	if( empty($nesting) ) $nesting = addslashes($_POST['nested']);
+	
+    set('nested', $nesting);
     if( !empty($nesting) ) $nesting = '.'.$nesting;
     return $nesting;
 }
@@ -98,13 +100,15 @@ if( !function_exists('headers_list'))
 # "backport" of php5
 if( !function_exists('array_combine') )
 {
-    function array_combine($arr1, $arr2) {
+    function array_combine($arr1, $arr2) 
+    {
         $out = array();
 
         $arr1 = array_values($arr1);
         $arr2 = array_values($arr2);
 
-        foreach($arr1 as $key1 => $value1) {
+        foreach($arr1 as $key1 => $value1) 
+        {
             $out[(string)$value1] = $arr2[$key1];
         }
 
