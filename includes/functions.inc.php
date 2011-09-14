@@ -36,6 +36,9 @@ function encode_javascript($str)
 
 /**
  * get and return the nesting of another model
+ * 
+ * the nesting is also available in a view under the "$nested" variable
+ * a nesting specified via GET will take precedence over one specified in POST
  */
 function get_nesting()
 {
@@ -49,6 +52,7 @@ function get_nesting()
 
 /**
  * include files by name
+ * 
  * optionally add a dot-seperated pre- or suffix
  * e.g.: prefix.filename.suffix.php
  * 

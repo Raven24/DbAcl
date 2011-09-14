@@ -21,15 +21,15 @@ foreach($role['services'] as $service) {
 
 <?php } ?>
 
-<?php content_for('scripts'); ?>
-<script type="text/javascript">
+<?php content_for('scripts'); ?> 
 
+<?= HTML::script("
 $('.add_service').click(function() {
    $.getScript(this.href);
    return false;
 });
 
-var currentNav = "access";
+var currentNav = 'access';
+") ?>
 
-</script>
 <?php end_content_for(); ?>

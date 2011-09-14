@@ -34,14 +34,13 @@ foreach($role['people'] as $person) {
 <?php end_content_for(); ?>
 
 <?php content_for('scripts'); ?>
-<script type="text/javascript">
 
+<?= HTML::script("
 $('#createRole, .edit_role, .add_person').click(function() {
    $.getScript(this.href);
    return false;
 });
+var currentNav = 'roles';
+") ?>
 
-var currentNav = "roles";
-
-</script>
 <?php end_content_for(); ?>

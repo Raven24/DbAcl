@@ -19,15 +19,14 @@ form { display: inline-block; }
 </div>
 <?php end_content_for(); ?>
 
-<?php content_for('scripts'); ?>
-<script type="text/javascript">
+<?php content_for('scripts'); ?> 
 
-$('.edit_client, #createClient').live("click", function() {
+<?= HTML::script("
+$('.edit_client, #createClient').live('click', function() {
     $.getScript(this.href);
     return false;
 });
+var currentNav = 'clients';
+") ?>
 
-var currentNav = "clients";
-
-</script>
 <?php end_content_for(); ?>

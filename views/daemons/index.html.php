@@ -32,15 +32,14 @@ foreach($daemon['ports'] as $port) {
 </div>
 <?php end_content_for(); ?>
 
-<?php content_for('scripts'); ?>
-<script type="text/javascript">
+<?php content_for('scripts'); ?> 
 
+<?= HTML::script("
 $('#createDaemon, .edit_daemon, .add_port').click(function() {
    $.getScript(this.href);
    return false;
 });
+var currentNav = 'daemons';
+") ?>
 
-var currentNav = "daemons";
-
-</script>
 <?php end_content_for(); ?>

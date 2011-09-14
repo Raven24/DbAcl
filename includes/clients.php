@@ -61,21 +61,20 @@ function clients_create()
 
     $id = $db->insertId();
 
-    if( $result )
-    {
-        $arrClient = fetchClients("WHERE {$cfg['tblClient']}.id=$id");
-
-        set('client', array_pop($arrClient));
-        
-        if( isAjaxRequest() )
-            return js('clients/show.js.php', null, array('nested'=>$nested));
-        else
-            redirect_to('clients');
-    }
-    else
+	if( !$result )
     {
         halt(SERVER_ERROR);
+        return;
     }
+    
+    $arrClient = fetchClients("WHERE {$cfg['tblClient']}.id=$id");
+    set('client', array_pop($arrClient));
+
+    if( isAjaxRequest() )
+    	return js('clients/show.js.php', null, array('nested'=>$nested));
+    else
+  		redirect_to('clients');
+    
 }
 
 # show form to edit an existing client

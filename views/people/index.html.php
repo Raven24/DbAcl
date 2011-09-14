@@ -31,19 +31,18 @@
 <?php end_content_for(); ?>
 
 
-<?php content_for('scripts'); ?>
-<script type="text/javascript">
+<?php content_for('scripts'); ?> 
 
+<?= HTML::script("
 $('#createPerson, .add_client, .edit_person').click( function() {
     $.getScript(this.href);
     return false;
 });
-$('.edit_client').live("click", function(event){
+$('.edit_client').live('click', function(event){
     $.getScript(this.href);
     return false;
 });
+var currentNav = 'people';
+") ?>
 
-var currentNav = "people";
-
-</script>
 <?php end_content_for(); ?>

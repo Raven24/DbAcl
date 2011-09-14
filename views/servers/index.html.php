@@ -33,15 +33,14 @@ foreach($server['daemons'] as $daemon) {
 </div>
 <?php end_content_for(); ?>
 
-<?php content_for('scripts'); ?>
-<script type="text/javascript">
+<?php content_for('scripts'); ?> 
 
+<?= HTML::script("
 $('#createServer, .edit_role, .add_daemon').click(function() {
    $.getScript(this.href);
    return false;
 });
+var currentNav = 'servers';
+") ?>
 
-var currentNav = "servers";
-
-</script>
 <?php end_content_for(); ?>
