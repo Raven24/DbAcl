@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-13 15:24+0200\n"
+"POT-Creation-Date: 2011-09-14 15:01+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Staudacher <florian_staudacher@yahoo.de>\n"
 "Language-Team: \n"
@@ -61,7 +61,8 @@ msgstr "Person"
 #: views/people/_form.html.php:19
 #: views/people/edit.js.php:11
 #: views/people/new.js.php:11
-#: views/ports/_form.html.php:19
+#: views/ports/_form.html.php:54
+#: views/ports/new.js.php:11
 msgid "save"
 msgstr "speichern"
 
@@ -80,7 +81,6 @@ msgstr "Neuer Client"
 
 #: views/clients/new.person.js.php:2
 #: views/ports/new.daemon.js.php:2
-#: views/ports/new.js.php:2
 msgid "cancel"
 msgstr "abbrechen"
 
@@ -180,17 +180,25 @@ msgstr[1] "%d Personen"
 msgid "Assign people to their roles"
 msgstr "Personen ihren Rollen zuordnen"
 
-#: views/ports/_form.html.php:6
+#: views/ports/_form.html.php:27
 msgid "number"
 msgstr "Nummer"
 
-#: views/ports/_form.html.php:11
+#: views/ports/_form.html.php:32
 msgid "protocol"
 msgstr "Protokoll"
+
+#: views/ports/_form.html.php:41
+msgid "daemon"
+msgstr "Daemon"
 
 #: views/ports/index.html.php:1
 msgid "Listing ports"
 msgstr "Ports"
+
+#: views/ports/new.js.php:7
+msgid "Create port"
+msgstr "Neuer Port"
 
 #: views/ports/show.daemon.html.php:3
 #: views/ports/show.html.php:4
