@@ -46,6 +46,33 @@ function get_nesting()
 }
 
 /**
+ * include files by name
+ * optionally add a dot-seperated pre- or suffix
+ * e.g.: prefix.filename.suffix.php
+ * 
+ * @param array filenames
+ */
+function include_files($names)
+{
+	$prefix = $suffix = '';
+	if( isset($names['prefix'])) 
+	{
+		$prefix = $names['prefix'].'.';
+		unset($names['prefix']);
+	}
+	if( isset($names['suffix']))
+	{
+		$suffix = '.'.$names['suffix'];
+		unset($names['suffix']);
+	}
+	
+	foreach( $names as $name ) 
+	{
+		include(dirname(__FILE__) . '/' . $prefix . $name . $suffix . '.php');
+	}
+}
+
+/**
  * php 4 compatibility functions.
  * simulate some functions that are available only in newer php versions
  */

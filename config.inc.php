@@ -1,5 +1,7 @@
 <?php
 
+include('includes/functions.inc.php');
+
 # database credentials and table names
 $GLOBALS['cfg'] = array(
     'db'                => 'access',
@@ -18,7 +20,13 @@ $GLOBALS['cfg'] = array(
 );
 
 # database handling
-include('includes/db_handle.php');
+$arrClasses = array(
+	'suffix' => 'class',
+	'object',
+	'mysql',
+	'html',
+);
+include_files($arrClasses);
 
 $GLOBALS['db'] = new MySQL(
     $GLOBALS['cfg']['db_host'],
@@ -40,7 +48,7 @@ bindtextdomain($gettext_domain, './locale');
 bind_textdomain_codeset($gettext_domain, 'UTF-8');
 textdomain($gettext_domain);
 
-include('includes/functions.inc.php');
+
 include('includes/auth.inc.php');
 
 # limonade micro php framework - http://www.limonade-php.net
@@ -54,11 +62,7 @@ $arrControllers = array(
 	'ports',	'roles',	
 	'servers'
 );
-foreach( $arrControllers as $controller ) 
-{
-	include('includes/'.$controller.'.php');
-}
-
+include_files($arrControllers);
 
 # limonade configuration
 function configure()
@@ -89,6 +93,7 @@ function before()
             <area id="people_nav" shape="rect" href="'.url_for('people').'" coords="74,7,193,28" alt="people">
             <area id="clients_nav" shape="rect" href="'.url_for('clients').'" coords="2,55,98,76" alt="clients">
             <area id="people_roles_nav" shape="rect" href="'.url_for('people_roles').'" coords="176,54,267,75" alt="people_roles">
+            <area id="ports_nav" shape="rect" href="'.url_for('ports').'" coords="748,55,849,76" alt="ports">
         </map>
     ');
     set('footer', '&copy; 2011 - Florian Staudacher (Frontend), Alexander Philipp Lintenhofer (Backend)');

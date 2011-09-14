@@ -6,7 +6,7 @@
  * 
  * @author Florian Staudacher
  */
-class MySQL
+class MySQL extends Object
 {
     var $lastQuery = '';
     var $lastResult = null;
@@ -17,7 +17,7 @@ class MySQL
     /**
      * constructor
      */
-    function MySQL($_host, $_user, $_pwd)
+    function __construct($_host, $_user, $_pwd)
     {
         $this->dbConn = mysql_connect($_host, $_user, $_pwd) or $this->dbg();
         $this->setCharset("utf8");

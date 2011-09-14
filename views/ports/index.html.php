@@ -6,10 +6,10 @@
 
 } ?>
 
-<style type="text/css">
+<?= HTML::css("
 dl.port { margin: 1px 0; }
 form { display: inline-block; }
-</style>
+") ?>
 
 <?php content_for('controls'); ?>
 <div id="controls">
@@ -19,15 +19,15 @@ form { display: inline-block; }
 </div>
 <?php end_content_for(); ?>
 
-<?php content_for('scripts'); ?>
-<script type="text/javascript">
+<?php content_for('scripts'); ?> 
 
-$('.edit_port, #createPort').live("click", function() {
+<?= HTML::script("
+$('.edit_port, #createPort').live('click', function() {
     $.getScript(this.href);
     return false;
 });
 
-var currentNav = "ports";
+var currentNav = 'ports';
+"); ?>
 
-</script>
 <?php end_content_for(); ?>
