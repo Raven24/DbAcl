@@ -6,10 +6,10 @@
 
 } ?>
 
-<style type="text/css">
+<?= HTML::css("
 dl.client { margin: 1px 0; }
 form { display: inline-block; }
-</style>
+") ?>
 
 <?php content_for('controls'); ?>
 <div id="controls">

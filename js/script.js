@@ -27,6 +27,24 @@ $('*[data-remote=true]').live("submit", function() {
     return false;
 });
 
+// let text 'fade out' if too long
+var dragBg = $('.dragitems > div').css('background-color');
+var dragBgRGB = getRGB(dragBg);
+$('.dragitems > div').css('position', 'relative').append(
+    $('<div></div>').css({
+        'width' : '1.5em',
+        'position' : 'absolute',
+        'right' : 0,
+        'top' : 0,
+        'bottom' : 0,
+    }).attr('style', function(i, val) {
+        var style = val;
+        style += 'background-image: -webkit-gradient(linear, left bottom, right bottom, color-stop(0, rgba('+dragBgRGB[0]+', '+dragBgRGB[1]+', '+dragBgRGB[2]+', 0.0)), color-stop(0.75, '+dragBg+'));\
+            background-image: -moz-linear-gradient(left, rgba('+dragBgRGB[0]+', '+dragBgRGB[1]+', '+dragBgRGB[2]+', 0.0) 0%, '+dragBg+' 75%)';
+        return style;
+    })
+);
+
 // highliting for the header imagemap
 $('#header_img').maphilight({
     fillColor: '44AAFF',

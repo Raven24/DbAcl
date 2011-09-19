@@ -6,4 +6,4 @@ abort.click(function(){
 });
 form.find('.actions').append(abort);
 
-$('dl[data-id=<?= $role['id'] ?>]').append(form);
+$('dl[data-id=<?= $role['id'] ?>]').append(form).find('dd').show();
