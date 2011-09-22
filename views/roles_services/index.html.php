@@ -37,7 +37,7 @@ $('body').droppable({
         showOverlay();
         
         $.post('".url_for('roles_services') ."', {
-            serivce_id : ui.draggable.data('id'),
+            service_id : ui.draggable.data('id'),
             role_id   : ui.draggable.data('role_id'),
             '_method' : 'DELETE',
             connect   : 1

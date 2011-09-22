@@ -27,6 +27,75 @@ function roles_services_index()
 	return html('roles_services/index.html.php');
 }
 
+# associate a role with a service
+dispatch_post('/roles_services', 'roles_services_create');
+function roles_services_create()
+{
+    $cfg = $GLOBALS['cfg'];
+    $db  = $GLOBALS['db'];
+
+    $role_id    = intval($_POST['role_id']);
+    $service_id = intval($_POST['service_id']);
+    $connect    = isset($_POST['connect']) ? true : false;
+
+    $result = $db->insert(
+        "INSERT INTO {$cfg['tblAccess']}
+        (rolle_id, dienst_id) VALUES
+        ('$role_id', '$service_id')"
+    );
+
+    if( !$result )
+    {
+        halt(SERVER_ERROR);
+        return;
+    }
+
+    if( isAjaxRequest() && $connect )
+    {
+        $arrRoles = fetchRolesServices("WHERE {$cfg['tblRole']}.id = $role_id");
+        return js('roles_services/role.js.php', null, array('role'=>array_pop($arrRoles)));
+    }
+    else
+    {
+        halt(HTTP_NOT_IMPLEMENTED);
+    }
+}
+
+# delete the link between role and a service
+dispatch_delete('/roles_services', 'roles_services_delete');
+function roles_services_delete()
+{
+    $cfg = $GLOBALS['cfg'];
+    $db  = $GLOBALS['db'];
+
+    $role_id    = intval($_POST['role_id']);
+    $service_id = intval($_POST['service_id']);
+    $connect    = isset($_POST['connect']) ? true : false;
+        
+    $result = $db->delete(
+        "DELETE FROM {$cfg['tblAccess']}
+        WHERE rolle_id='$role_id'
+        AND dienst_id='$service_id'
+        LIMIT 1"        
+    );
+    
+    if( !$result )
+    {
+        halt(SERVER_ERROR);
+        return;
+    }
+
+    if( isAjaxRequest() && $connect )
+    {
+    	$arrRoles = fetchRolesServices("WHERE {$cfg['tblRole']}.id = $role_id");
+    	return js('roles_services/role.js.php', null, array('role'=>array_pop($arrRoles)));
+    }
+    else
+    {
+        halt(HTTP_NOT_IMPLEMENTED);
+    }
+}
+
 /**
  * Fetch roles with services and return them as array
  * @param string sql where statement
